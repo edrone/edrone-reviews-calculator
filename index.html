@@ -1,0 +1,1860 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Kalkulator Recenzji — edrone Reviews</title>
+<style>
+  :root {
+    --bg: #F5F0E1;
+    --bg-dark: #1E1E1E;
+    --text: #1E1E1E;
+    --text-inv: #FAF5E6;
+    --muted: #6B6559;
+    --muted-dark: #B0B0B0;
+    --card: #FAF5E6;
+    --card-2: #F0EAD9;
+    --border: #E0DAC9;
+    --accent: #ECFF5A;
+    --accent-2: #5AE3E3;
+    --star: #FFB800;
+    --danger: #B00020;
+    --success: #1B7A3E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .topbar {
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg);
+  }
+  .topbar .brand {
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  .topbar .brand .dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1.5px solid var(--text);
+  }
+  .topbar .brand span { color: var(--muted); font-weight: 500; margin-left: 8px; }
+
+  /* HERO */
+  .hero {
+    background: var(--bg-dark);
+    padding: 80px 32px 96px;
+    text-align: center;
+  }
+  .hero-inner { max-width: 820px; margin: 0 auto; }
+  .hero .pill {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1.5px solid var(--accent-2);
+    border-radius: 999px;
+    color: var(--accent-2);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    color: var(--accent);
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 20px;
+  }
+  .hero p.lead {
+    color: var(--muted-dark);
+    font-size: 17px;
+    line-height: 1.65;
+    margin: 0 auto 28px;
+    max-width: 680px;
+  }
+  .hero .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 28px;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  .hero .badges span { color: var(--accent-2); font-weight: 700; }
+  @media (max-width: 640px) {
+    .hero { padding: 56px 22px 72px; }
+    .hero h1 { font-size: 36px; }
+  }
+
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* CALCULATOR CARD */
+  .calc-wrap {
+    margin-top: -56px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px -28px rgba(30,30,30,0.25);
+    padding: 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .calc-wrap h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .calc-wrap .calc-sub {
+    margin: 0 0 26px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  @media (max-width: 640px) {
+    .calc-wrap { padding: 24px; margin-top: -40px; border-radius: 14px; }
+  }
+
+  /* INPUT FIELDS */
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .field { margin-bottom: 22px; }
+  .field-shop {
+    background: linear-gradient(180deg, #FFFEF3 0%, var(--card) 100%);
+    border: 2px solid var(--text);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 26px;
+  }
+  .field-shop label {
+    color: var(--text);
+    font-size: 13px;
+  }
+  .field-shop label::before {
+    content: "▸ ";
+    color: var(--text);
+  }
+  input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 17px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    font-family: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field-shop input[type="text"] {
+    font-size: 22px;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    padding: 6px 0;
+    letter-spacing: -0.01em;
+  }
+  .field-shop input[type="text"]:focus { outline: none; }
+  input:focus {
+    outline: none;
+    border-color: var(--text);
+    box-shadow: 0 0 0 4px rgba(236, 255, 90, 0.4);
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--border);
+    outline: none;
+    padding: 0;
+    margin: 6px 0 0;
+    cursor: pointer;
+  }
+  input[type="range"]:focus { outline: none; box-shadow: none; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2.5px solid var(--text);
+    box-shadow: 0 0 0 4px rgba(236, 255, 90, 0.25);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2.5px solid var(--text);
+    box-shadow: 0 0 0 4px rgba(236, 255, 90, 0.25);
+  }
+  .slider-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .slider-head .caption {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .slider-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.015em;
+  }
+  .slider-bounds {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  @media (max-width: 640px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 18px; }
+  }
+
+  /* ADVANCED PARAMS */
+  .params {
+    margin-top: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .params summary {
+    padding: 16px 22px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+  .params summary::-webkit-details-marker { display: none; }
+  .params summary::after {
+    content: "▼";
+    font-size: 11px;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .params[open] summary::after { transform: rotate(180deg); }
+  .params summary .badge-default {
+    margin-left: 10px;
+    font-size: 10px;
+    background: var(--accent);
+    color: var(--text);
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+    font-weight: 800;
+  }
+  .params .params-body {
+    padding: 8px 22px 22px;
+    border-top: 1px solid var(--border);
+    background: #fff;
+  }
+  .params-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 28px;
+    margin-top: 18px;
+  }
+  @media (max-width: 640px) { .params-grid { grid-template-columns: 1fr; gap: 18px; } }
+  .param-block label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .param-block .param-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .param-block .param-val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+  .param-block .hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 6px 0 0;
+    line-height: 1.45;
+  }
+  .fixed-pricing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: var(--card-2);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+  }
+  .fixed-pricing-item {
+    flex: 1 1 180px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 8px;
+  }
+  .fixed-pricing-item + .fixed-pricing-item {
+    border-left: 1px solid var(--border);
+    padding-left: 18px;
+  }
+  @media (max-width: 540px) {
+    .fixed-pricing-item + .fixed-pricing-item { border-left: none; padding-left: 8px; }
+  }
+  .fixed-pricing-item .fp-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .fixed-pricing-item .fp-value {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .params-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .btn-ghost {
+    background: #fff;
+    color: var(--text);
+    border: 1.5px solid var(--text);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-ghost:hover { background: var(--card-2); }
+
+  button.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--text);
+    border: 2px solid var(--text);
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+    box-shadow: 4px 4px 0 var(--text);
+    transition: transform 0.08s, box-shadow 0.08s;
+    margin-top: 18px;
+  }
+  button.cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--text);
+  }
+  button.cta:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--text);
+  }
+  button.cta:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 4px 4px 0 var(--text);
+  }
+  .error {
+    color: var(--danger);
+    font-size: 14px;
+    margin-top: 14px;
+    font-weight: 600;
+  }
+  .hidden { display: none !important; }
+
+  /* RESULTS */
+  .results-block {
+    margin-top: 36px;
+    padding: 32px 32px 8px;
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-block::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .results-for {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent-2);
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .results-shop {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    word-break: break-word;
+  }
+  .results-meta {
+    font-size: 14px;
+    color: var(--muted-dark);
+    margin: 0 0 28px;
+  }
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 760px) {
+    .kpis { grid-template-columns: 1fr; }
+    .results-block { padding: 24px 22px 8px; }
+    .results-shop { font-size: 28px; }
+  }
+  .kpi {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .kpi.highlight {
+    background: var(--accent);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  .kpi .kpi-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted-dark);
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+  .kpi.highlight .kpi-label { color: rgba(30,30,30,0.7); }
+  .kpi .kpi-value {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .kpi .kpi-sub {
+    font-size: 13px;
+    color: var(--muted-dark);
+    margin: 8px 0 0;
+  }
+  .kpi.highlight .kpi-sub { color: rgba(30,30,30,0.75); }
+  .kpi-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 0 10px;
+    flex-wrap: wrap;
+  }
+  .kpi-header .kpi-label { margin: 0; }
+  .kpi-toggle {
+    display: inline-flex;
+    background: rgba(30,30,30,0.12);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .kpi-toggle button {
+    background: transparent;
+    border: none;
+    padding: 5px 12px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(30,30,30,0.65);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .kpi-toggle button:hover { color: rgba(30,30,30,0.95); }
+  .kpi-toggle button.active {
+    background: var(--text);
+    color: var(--accent);
+  }
+
+  .breakdown {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 10px 0 18px;
+  }
+  .breakdown h4 {
+    margin: 0 0 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted-dark);
+    font-weight: 700;
+  }
+  .breakdown .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 14px;
+  }
+  .breakdown .row:first-of-type { border-top: none; }
+  .breakdown .row .lbl { color: var(--muted-dark); }
+  .breakdown .row .val { font-weight: 700; color: var(--text-inv); }
+  .breakdown .row.total .val { color: var(--accent); font-size: 16px; }
+  .breakdown .row.commission {
+    margin: 12px -22px;
+    padding: 16px 22px;
+    background: rgba(236, 255, 90, 0.12);
+    border-top: 1px solid rgba(236, 255, 90, 0.3);
+    border-bottom: 1px solid rgba(236, 255, 90, 0.3);
+    font-size: 17px;
+    align-items: center;
+  }
+  .breakdown .row.commission .lbl {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+  }
+  .breakdown .row.commission .lbl small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted-dark);
+    font-weight: 500;
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  .breakdown .row.commission .val {
+    color: var(--accent);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .breakdown .row.net {
+    margin: 12px -22px 0;
+    padding: 18px 22px;
+    background: rgba(236, 255, 90, 0.18);
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    font-size: 17px;
+    align-items: center;
+  }
+  .breakdown .row.net .lbl {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+  }
+  .breakdown .row.net .lbl small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted-dark);
+    font-weight: 500;
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  .breakdown .row.net .val {
+    color: var(--accent);
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+  }
+
+  .results-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    align-items: center;
+    padding: 18px 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 14px;
+    color: var(--muted-dark);
+  }
+  .results-summary strong { color: var(--accent); font-weight: 800; }
+
+  .results-cta {
+    margin: 24px -32px -8px;
+    padding: 32px;
+    background: var(--accent);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 760px) {
+    .results-cta { margin: 24px -22px -8px; padding: 26px 22px; }
+  }
+  .results-cta .copy { font-weight: 700; font-size: 17px; max-width: 480px; line-height: 1.4; }
+  .results-cta .small {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(30,30,30,0.75);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .results-cta button {
+    background: var(--text);
+    color: var(--accent);
+    border: none;
+    padding: 18px 36px;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 rgba(30,30,30,0.18);
+    transition: transform 0.08s, box-shadow 0.08s;
+    flex-shrink: 0;
+  }
+  .results-cta button:hover {
+    filter: brightness(1.1);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(30,30,30,0.22);
+  }
+  .results-cta button:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 rgba(30,30,30,0.18);
+  }
+
+  /* SECTIONS */
+  .section { margin-top: 80px; }
+  .section-header { margin-bottom: 36px; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--accent);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    border: 1.5px solid var(--text);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--text);
+    border-radius: 50%;
+  }
+  .section h2 {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 0 0 14px;
+    letter-spacing: -0.028em;
+    line-height: 1.05;
+    max-width: 820px;
+  }
+  .section h2 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 58%, var(--accent) 58%, var(--accent) 92%, transparent 92%);
+    padding: 0 6px;
+    margin: 0 -3px;
+  }
+  .section h2 .stroke {
+    -webkit-text-stroke: 2px var(--text);
+    color: transparent;
+    font-style: normal;
+  }
+  @media (max-width: 640px) {
+    .section { margin-top: 56px; }
+    .section h2 { font-size: 30px; }
+  }
+  .section .section-lead {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+    max-width: 720px;
+    line-height: 1.6;
+  }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-lead { margin-left: auto; margin-right: auto; }
+
+  /* SCREENS / MOCKUPS */
+  .screens-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 860px) { .screens-grid { grid-template-columns: 1fr; } }
+  .screen-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px -20px rgba(30,30,30,0.18);
+    display: flex;
+    flex-direction: column;
+  }
+  .screen-card .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: var(--card-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .screen-card .browser-bar .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .screen-card .browser-bar .dot:nth-child(1) { background: #FF6058; }
+  .screen-card .browser-bar .dot:nth-child(2) { background: #FFBD2E; }
+  .screen-card .browser-bar .dot:nth-child(3) { background: #28C941; }
+  .screen-card .browser-bar .url {
+    margin-left: 14px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: -apple-system, monospace;
+    background: #fff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    flex: 1;
+  }
+  .screen-card .screen-body { padding: 24px; flex: 1; }
+  .screen-card .screen-caption {
+    padding: 14px 22px 18px;
+    border-top: 1px solid var(--border);
+    background: var(--card);
+  }
+  .screen-card .screen-caption h4 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .screen-card .screen-caption p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* PDP MOCKUP with stars */
+  .mockup-pdp { background: #fff; }
+  .mockup-pdp .product-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #1E1E1E;
+  }
+  .mockup-pdp .stars-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .mockup-pdp .stars {
+    color: var(--star);
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .mockup-pdp .rating-meta {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .mockup-pdp .price {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1E1E1E;
+    margin: 0 0 14px;
+  }
+  .mockup-pdp .reviews-list {
+    margin-top: 18px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .mockup-pdp .review {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .mockup-pdp .review .rev-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .mockup-pdp .review .rev-stars {
+    color: var(--star);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .mockup-pdp .review .rev-author {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .mockup-pdp .review .rev-author .verified {
+    color: var(--success);
+    font-weight: 600;
+    font-size: 10px;
+    margin-left: 6px;
+  }
+  .mockup-pdp .review .rev-text {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  /* Email mockup */
+  .mockup-email { background: #fff; }
+  .mockup-email .email-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+  .mockup-email .email-head .from {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 4px;
+  }
+  .mockup-email .email-head .subj {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+  .mockup-email .email-body {
+    text-align: center;
+  }
+  .mockup-email .email-body .greet {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .mockup-email .email-body .ask {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  .mockup-email .star-pick {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .mockup-email .star-pick span {
+    font-size: 28px;
+    color: var(--border);
+    cursor: pointer;
+  }
+  .mockup-email .star-pick span.on { color: var(--star); }
+  .mockup-email .email-cta {
+    display: inline-block;
+    background: #1E1E1E;
+    color: var(--accent);
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* Channels mockup */
+  .mockup-channels {
+    grid-column: 1 / -1;
+    background: #fff;
+  }
+  .mockup-channels .ch-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .mockup-channels .ch-row { grid-template-columns: 1fr; } }
+  .mockup-channels .ch-card {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    background: #fff;
+    position: relative;
+  }
+  .mockup-channels .ch-card .ch-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .mockup-channels .ch-card .ch-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .mockup-channels .ch-card .ch-icon.email { background: #4F46E5; }
+  .mockup-channels .ch-card .ch-icon.sms { background: #1E1E1E; }
+  .mockup-channels .ch-card .ch-icon.whatsapp { background: #25D366; }
+  .mockup-channels .ch-card .ch-name {
+    font-size: 14px;
+    font-weight: 800;
+    margin: 0;
+    color: var(--text);
+  }
+  .mockup-channels .ch-card .ch-rate {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0;
+    font-weight: 600;
+  }
+  .mockup-channels .ch-card .ch-bubble {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .mockup-channels .ch-card .ch-bubble.whatsapp {
+    background: #DCF8C6;
+  }
+  .mockup-channels .ch-card .ch-bubble.sms {
+    background: #F0F0F0;
+  }
+  .mockup-channels .ch-card .ch-bubble .ch-stars {
+    color: var(--star);
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 6px;
+  }
+  .mockup-channels .ch-card .ch-link {
+    color: #1A73E8;
+    font-size: 11px;
+    text-decoration: underline;
+    word-break: break-all;
+  }
+
+  /* STATS GRID */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .stats { grid-template-columns: 1fr; } }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  .stat .num {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+  }
+  .stat .num em {
+    font-style: normal;
+    background: var(--accent);
+    padding: 0 4px;
+  }
+  .stat .desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.45;
+  }
+  .stat .src {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 8px 0 0;
+    font-style: italic;
+  }
+
+  /* PROBLEM/REASON LIST */
+  .reason-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 760px) { .reason-grid { grid-template-columns: 1fr; } }
+  .reason-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .reason-card h3 {
+    font-size: 17px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    letter-spacing: -0.005em;
+  }
+  .reason-card h3::before {
+    content: "✕";
+    color: var(--danger);
+    font-weight: 800;
+    margin-right: 8px;
+  }
+  .reason-card.solution h3::before {
+    content: "✓";
+    color: var(--success);
+  }
+  .reason-card p {
+    color: var(--muted);
+    font-size: 14.5px;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* FEATURE / ALGO SECTION */
+  .algos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 760px) { .algos { grid-template-columns: 1fr; } }
+  .algo {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .algo .icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--accent);
+    border: 2px solid var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .algo h3 { font-size: 16px; margin: 0 0 4px; font-weight: 800; }
+  .algo p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+  /* PLACEMENTS */
+  .placements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .placement {
+    background: var(--card);
+    border: 1.5px solid var(--text);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .placement::before { content: "📍"; margin-right: 6px; }
+
+  /* PRICING TABLE */
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 12px 0 0;
+  }
+  .pricing-table th, .pricing-table td {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-table th {
+    background: var(--card-2);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-note {
+    color: var(--muted);
+    font-size: 13.5px;
+    margin: 14px 0 0;
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .faq details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin-bottom: 10px;
+    transition: background 0.15s;
+  }
+  .faq details[open] { background: var(--card-2); }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    list-style: none;
+    padding-right: 30px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    float: right;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1;
+    margin-right: -22px;
+  }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details p {
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 12px 0 0;
+  }
+
+  /* BIG CTA */
+  .cta-section {
+    margin-top: 72px;
+    padding: 56px 36px;
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 300px; height: 300px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.1;
+  }
+  .cta-section h2 {
+    color: var(--accent);
+    font-size: 34px;
+    margin: 0 0 12px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+  .cta-section p {
+    margin: 0 0 24px;
+    font-size: 16px;
+    color: var(--muted-dark);
+    position: relative;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-section .timing {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+  }
+  .cta-section .timing strong { color: var(--accent); }
+  .cta-section-btn {
+    margin-top: 32px;
+    background: var(--accent);
+    color: var(--text);
+    border: none;
+    padding: 18px 40px;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+    transition: transform 0.08s, box-shadow 0.08s;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-section-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+    filter: brightness(1.05);
+  }
+  .cta-section-btn:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+  }
+  @media (max-width: 640px) {
+    .cta-section { padding: 40px 24px; }
+    .cta-section h2 { font-size: 26px; }
+  }
+
+  footer {
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span>edrone <span>Kalkulator Recenzji</span></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="pill">edrone Reviews</span>
+      <h1>Opinie, które sprzedają.</h1>
+      <p class="lead">Automatyczne zbieranie opinii klientów przez Email, SMS i WhatsApp — z weryfikacją zakupu i zgodnością z Omnibus. Sprawdź, ile zapłacisz za <strong>Twój sklep</strong>.</p>
+      <div class="badges">
+        <div>✓ Wdrożenie w <span>15 minut</span></div>
+        <div>✓ Bez kodowania</div>
+        <div>✓ Płacisz tylko za <span>zamówienia</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="calc-wrap">
+      <h2>Sprawdź swoją cenę edrone Reviews</h2>
+      <p class="calc-sub">Wybierz liczbę zamówień miesięcznie — od razu zobaczysz cenę z oficjalnego cennika.</p>
+
+      <div class="field-shop">
+        <label for="shopName">Dla jakiej firmy liczymy?</label>
+        <input id="shopName" type="text" placeholder="np. mojsklep.pl" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <div class="slider-head">
+          <span class="caption">Liczba zamówień miesięcznie</span>
+          <span class="slider-value" id="ordersDisplay">1 000</span>
+        </div>
+        <input id="orders" type="range" min="0" max="20000" step="50" value="1000" />
+        <div class="slider-bounds"><span>0</span><span>20 000+</span></div>
+      </div>
+
+      <div id="errorMsg" class="error hidden"></div>
+    </div>
+
+    <div id="resultsBlock">
+      <div class="results-block">
+        <p class="results-for">Cena dla</p>
+        <h2 class="results-shop" id="shopHeading">Twojego sklepu</h2>
+        <p class="results-meta" id="shopMeta">Pakiet: —</p>
+
+        <div class="kpis">
+          <div class="kpi">
+            <p class="kpi-label">Twój próg</p>
+            <p class="kpi-value" id="kpiBracket" style="font-size:26px;">—</p>
+            <p class="kpi-sub" id="kpiBracketSub">zamówień / mies.</p>
+          </div>
+          <div class="kpi highlight">
+            <div class="kpi-header">
+              <p class="kpi-label">Cena netto</p>
+              <div class="kpi-toggle" role="tablist" aria-label="Zakres czasu">
+                <button type="button" class="active" data-period="month" role="tab" aria-selected="true">/ mies.</button>
+                <button type="button" data-period="year" role="tab" aria-selected="false">/ rok</button>
+              </div>
+            </div>
+            <p class="kpi-value" id="kpiPrice">—</p>
+            <p class="kpi-sub" id="kpiPriceSub">— zł × — zamówień</p>
+          </div>
+          <div class="kpi">
+            <p class="kpi-label">Cena za zamówienie</p>
+            <p class="kpi-value" id="kpiRate">—</p>
+            <p class="kpi-sub">netto, w Twoim progu</p>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <h4>Co dostajesz w cenie</h4>
+          <div class="row"><span class="lbl">✓ Automatyczne zbieranie opinii: Email + SMS + WhatsApp</span><span class="val">w cenie</span></div>
+          <div class="row"><span class="lbl">✓ 7 stylów widgetów na karcie produktu</span><span class="val">w cenie</span></div>
+          <div class="row"><span class="lbl">✓ Verified purchase + zgodność z Omnibus</span><span class="val">w cenie</span></div>
+          <div class="row"><span class="lbl">✓ Migracja z TrustMate / Trusted Shops / CSV</span><span class="val">w cenie</span></div>
+          <div class="row"><span class="lbl">✓ Integracja z 25+ platformami e-commerce</span><span class="val">w cenie</span></div>
+          <div class="row"><span class="lbl">✓ Moderacja, odpowiedzi i rozkład ocen</span><span class="val">w cenie</span></div>
+          <div class="row"><span class="lbl">✓ Wdrożenie i wsparcie</span><span class="val">0 zł</span></div>
+        </div>
+
+        <div class="results-summary">
+          <span>⭐ Produkty z opiniami konwertują nawet o <strong>+270%</strong> lepiej</span>
+          <span>💬 3 kanały zbierania: <strong>Email + SMS + WhatsApp</strong></span>
+          <span>🛡️ 92% kupujących <strong>ufa opiniom</strong> bardziej niż reklamie</span>
+        </div>
+
+        <div class="results-cta">
+          <div class="copy">
+            Włącz edrone Reviews dla <span id="ctaShopName">Twojego sklepu</span>.
+            <span class="small">Wdrożenie 15 minut — pierwsze opinie i przypisane zamówienia jeszcze w tym tygodniu.</span>
+          </div>
+          <button type="button" id="bookBtn">Włącz Reviews</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING TIERS — directly under results -->
+    <section class="section" style="margin-top: 36px;">
+      <div class="section-header">
+        <span class="eyebrow">Progi rozliczeniowe</span>
+        <h2>Cały cennik na <em>jednym ekranie</em></h2>
+        <p class="section-lead">Im większy sklep, tym niższa stawka za zamówienie — automatycznie. Twój aktualny próg jest podświetlony.</p>
+      </div>
+      <table class="pricing-table" id="pricingTable">
+        <thead>
+          <tr><th>Poziom</th><th>Liczba zamówień / mies.</th><th>Cena za zamówienie</th></tr>
+        </thead>
+        <tbody>
+          <tr data-tier="1"><td>1</td><td>0–100</td><td><strong>0,99 zł</strong></td></tr>
+          <tr data-tier="2"><td>2</td><td>101–250</td><td><strong>0,76 zł</strong></td></tr>
+          <tr data-tier="3"><td>3</td><td>251–500</td><td><strong>0,60 zł</strong></td></tr>
+          <tr data-tier="4"><td>4</td><td>501–1 000</td><td><strong>0,45 zł</strong></td></tr>
+          <tr data-tier="5"><td>5</td><td>1 001–2 000</td><td><strong>0,32 zł</strong></td></tr>
+          <tr data-tier="6"><td>6</td><td>2 001–3 500</td><td><strong>0,26 zł</strong></td></tr>
+          <tr data-tier="7"><td>7</td><td>3 501–5 000</td><td><strong>0,23 zł</strong></td></tr>
+          <tr data-tier="8"><td>8</td><td>5 001–10 000</td><td><strong>0,14 zł</strong></td></tr>
+          <tr data-tier="9"><td>9</td><td>10 000+</td><td><strong>0,14 zł</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="pricing-note">Stawka × liczba zamówień w danym miesiącu = Twoja cena netto. <strong>Bez opłaty bazowej, bez ukrytych kosztów, bez „pakietów"</strong>. Wdrożenie, integracja, prośby Email/SMS/WhatsApp i migracja z TrustMate / Trusted Shops — w cenie.</p>
+    </section>
+
+    <!-- STATS / SOCIAL PROOF -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">Dowody</span>
+        <h2>Recenzje to nie <em>„miły dodatek"</em></h2>
+        <p class="section-lead">Nikt nie kupuje od sklepu, do którego nie ma zaufania. Recenzje to najtańszy i najszybszy sposób na zbudowanie tego zaufania <strong>w skali</strong>. Liczby są bezlitosne:</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <p class="num"><em>92%</em></p>
+          <p class="desc">kupujących ufa opiniom innych klientów bardziej niż reklamie</p>
+          <p class="src">Nielsen</p>
+        </div>
+        <div class="stat">
+          <p class="num"><em>63%</em></p>
+          <p class="desc">sprawdza opinie przed każdym zakupem online</p>
+          <p class="src">BazaarVoice</p>
+        </div>
+        <div class="stat">
+          <p class="num"><em>+270%</em></p>
+          <p class="desc">wzrostu konwersji dla produktów z 5+ opiniami vs. produktów bez opinii</p>
+          <p class="src">Spiegel Research Center</p>
+        </div>
+        <div class="stat">
+          <p class="num"><em>98%</em></p>
+          <p class="desc">open rate WhatsApp — najwyższa skuteczność prośby o opinię</p>
+          <p class="src">benchmarki branżowe</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">Problem</span>
+        <h2>Sklepy bez recenzji <em>tracą</em> przy każdej karcie produktu</h2>
+        <p class="section-lead">Klient w 2026 nie kupuje tego, czego nikt jeszcze nie kupił. Brak recenzji = niewidzialny podatek od każdej kampanii, którą prowadzisz.</p>
+      </div>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <h3>Klient nie wie, czy może Ci zaufać</h3>
+          <p>Pusta karta produktu, zero gwiazdek, zero opinii. Klient klika „wstecz" i szuka tego samego produktu u konkurencji, która opinie ma.</p>
+        </div>
+        <div class="reason-card">
+          <h3>Niezgodność z Omnibus = ryzyko prawne</h3>
+          <p>Dyrektywa Omnibus wymaga, żeby pokazywać tylko opinie pochodzące od osób, które rzeczywiście kupiły. Bez weryfikacji zakupu — kara do 10% obrotu.</p>
+        </div>
+        <div class="reason-card">
+          <h3>Klient zostawia opinię u konkurencji</h3>
+          <p>TrustMate, Trusted Shops, Google — opinia o Tobie żyje gdzieś poza Twoim sklepem. Bez kontroli, bez moderacji, bez wpływu na konwersję na Twojej karcie produktu.</p>
+        </div>
+        <div class="reason-card">
+          <h3>Nie wykorzystujesz UGC w marketingu</h3>
+          <p>Setki realnych ocen i opinii leżą bezużyteczne. Tymczasem to najlepiej konwertujący content w mailach, kampaniach i automatyzacjach edrone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">Rozwiązanie</span>
+        <h2>Co dostajesz w <em>edrone Reviews</em></h2>
+        <p class="section-lead">To nie kolejny widget. To <strong>kompletny system zbierania i publikacji opinii</strong> — w pełni zintegrowany z CRM-em i Marketing Automation edrone.</p>
+      </div>
+      <div class="algos">
+        <div class="algo">
+          <div class="icon">💬</div>
+          <div>
+            <h3>3 kanały zbierania: Email, SMS, WhatsApp</h3>
+            <p>Automatyczna prośba o opinię w optymalnym momencie po zamówieniu — wysłana tym kanałem, w którym klient odpowie najszybciej. WhatsApp ma 98% open rate.</p>
+          </div>
+        </div>
+        <div class="algo">
+          <div class="icon">🎨</div>
+          <div>
+            <h3>7 stylów widgetów</h3>
+            <p>Dopasowane do designu sklepu — gwiazdki, lista opinii, rozkład ocen, podsumowanie. Wybierasz styl, edrone publikuje na karcie produktu bez kodowania.</p>
+          </div>
+        </div>
+        <div class="algo">
+          <div class="icon">🛡️</div>
+          <div>
+            <h3>Verified purchase i Omnibus</h3>
+            <p>Każda opinia jest oznaczona „zweryfikowany zakup" — pokazujesz tylko opinie od osób, które naprawdę kupiły. Pełna zgodność z dyrektywą Omnibus.</p>
+          </div>
+        </div>
+        <div class="algo">
+          <div class="icon">↻</div>
+          <div>
+            <h3>Migracja w 1 kliknięciu</h3>
+            <p>Importujesz historyczne opinie z TrustMate, Trusted Shops lub pliku CSV. Od pierwszego dnia masz pełny katalog ocen u siebie — bez czekania.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 24px;">
+        <p style="font-size: 14px; color: var(--muted); margin: 0 0 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">Dokładnie tam, gdzie klient podejmuje decyzję:</p>
+        <div class="placements">
+          <span class="placement">Karta produktu</span>
+          <span class="placement">Strona kategorii</span>
+          <span class="placement">Email po-zakupowy</span>
+          <span class="placement">SMS</span>
+          <span class="placement">WhatsApp</span>
+          <span class="placement">Maile marketingowe edrone</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENS / EDRONE PRODUCT -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">Tak to wygląda</span>
+        <h2>Opinie w sklepie i w panelu <em>edrone</em></h2>
+        <p class="section-lead">Trzy proste kroki: wyślij prośbę przez Email/SMS/WhatsApp, zbierz zweryfikowaną opinię, pokaż ją na karcie produktu. <strong>Bez kodu, bez developera</strong> — gotowe w 15 minut.</p>
+      </div>
+
+      <div class="screens-grid">
+        <div class="screen-card">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">twojsklep.pl/produkt/koszulka-szalwiowa</span>
+          </div>
+          <div class="screen-body mockup-pdp">
+            <p class="product-title">Koszulka bawełniana — szałwia</p>
+            <div class="stars-row">
+              <span class="stars">★★★★★</span>
+              <span class="rating-meta">4,8 / 5 — 247 recenzji</span>
+            </div>
+            <p class="price">129 zł</p>
+            <div class="reviews-list">
+              <div class="review">
+                <div class="rev-head">
+                  <span class="rev-stars">★★★★★</span>
+                  <span class="rev-author">Anna K. <span class="verified">✓ zweryfikowany zakup</span></span>
+                </div>
+                <p class="rev-text">Materiał idealny, kolor zgodny ze zdjęciem. Pranie nie zmienia barwy. Polecam!</p>
+              </div>
+              <div class="review">
+                <div class="rev-head">
+                  <span class="rev-stars">★★★★☆</span>
+                  <span class="rev-author">Tomek R. <span class="verified">✓ zweryfikowany zakup</span></span>
+                </div>
+                <p class="rev-text">Bardzo dobra jakość. Rozmiar wyszedł trochę większy niż się spodziewałem.</p>
+              </div>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <h4>Tak opinie wyglądają u Twoich klientów</h4>
+            <p>Jeden z 7 stylów widgetów — gwiazdki, rozkład ocen, opinie z badge'em „zweryfikowany zakup". Automatycznie dopasowane do designu sklepu.</p>
+          </div>
+        </div>
+
+        <div class="screen-card">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">poczta.gmail.com / Inbox</span>
+          </div>
+          <div class="screen-body mockup-email">
+            <div class="email-head">
+              <p class="from">edrone-reviews &lt;recenzje@twojsklep.pl&gt;</p>
+              <p class="subj">Anna, jak Ci się sprawdza nowa koszulka? ⭐</p>
+            </div>
+            <div class="email-body">
+              <p class="greet">Cześć Anna!</p>
+              <p class="ask">Dotarła do Ciebie koszulka szałwiowa. Daj znać, jak się sprawdza — zajmie Ci to 30 sekund:</p>
+              <div class="star-pick">
+                <span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span>
+              </div>
+              <a href="#" class="email-cta">Zostaw recenzję →</a>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <h4>Automatyczna prośba — w idealnym momencie</h4>
+            <p>edrone wie, kiedy paczka dotarła do klienta. Wysyła Email, SMS lub WhatsApp dokładnie wtedy, gdy emocje po zakupie są największe.</p>
+          </div>
+        </div>
+
+        <div class="screen-card mockup-channels">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">app.edrone.me / Reviews / Kanały zbierania</span>
+          </div>
+          <div class="screen-body">
+            <div class="ch-row">
+              <div class="ch-card">
+                <div class="ch-head">
+                  <div class="ch-icon email">@</div>
+                  <div>
+                    <p class="ch-name">Email</p>
+                    <p class="ch-rate">~25% open rate</p>
+                  </div>
+                </div>
+                <div class="ch-bubble">
+                  <strong>Anna, jak Ci się sprawdza nowa koszulka?</strong>
+                  <span class="ch-stars">☆☆☆☆☆</span>
+                </div>
+                <span class="ch-link">recenzje.twojsklep.pl/anna-k</span>
+              </div>
+              <div class="ch-card">
+                <div class="ch-head">
+                  <div class="ch-icon sms">⌧</div>
+                  <div>
+                    <p class="ch-name">SMS</p>
+                    <p class="ch-rate">~95% open rate</p>
+                  </div>
+                </div>
+                <div class="ch-bubble sms">
+                  Cześć Anna! Jak sprawdza się koszulka? Zostaw opinię (30 sek):
+                  <span class="ch-link" style="display:block; margin-top:6px;">edrone.me/r/8X2A</span>
+                </div>
+              </div>
+              <div class="ch-card">
+                <div class="ch-head">
+                  <div class="ch-icon whatsapp">✓</div>
+                  <div>
+                    <p class="ch-name">WhatsApp</p>
+                    <p class="ch-rate">~98% open rate</p>
+                  </div>
+                </div>
+                <div class="ch-bubble whatsapp">
+                  Cześć Anna! 👋 Daj znać, jak sprawdza się koszulka — kliknij gwiazdki:
+                  <span class="ch-stars">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <h4>3 kanały zbierania w jednym narzędziu</h4>
+            <p>edrone wybiera kanał, w którym klient odpowie najszybciej. Email, SMS, WhatsApp — automatycznie, sekwencyjnie, w optymalnym momencie po dostawie.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT PAYS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">ROI</span>
+        <h2>Dlaczego to <em>się opłaca</em></h2>
+        <p class="section-lead">Recenzje to jedyny rodzaj contentu, który <strong>tworzą za Ciebie Twoi klienci</strong> — a wartość rośnie w czasie. Każda nowa recenzja zwiększa wiarygodność każdej kolejnej karty produktu.</p>
+      </div>
+      <div class="reason-grid">
+        <div class="reason-card solution">
+          <h3>Płacisz proporcjonalnie do skali</h3>
+          <p>Stawka za zamówienie spada wraz z wzrostem sklepu — od 0,99 zł w pierwszym progu do 0,14 zł powyżej 5 000 zamówień. Większy sklep = niższy koszt jednostkowy.</p>
+        </div>
+        <div class="reason-card solution">
+          <h3>Asset, który pracuje 24/7</h3>
+          <p>Każda zebrana opinia zostaje na Twojej karcie produktu na zawsze. Sprzedaje za Ciebie w nocy, w weekend i podczas wakacji.</p>
+        </div>
+        <div class="reason-card solution">
+          <h3>Jeden ekosystem z CRM-em edrone</h3>
+          <p>Opinie zasilają Twoje kampanie, automatyzacje i segmenty. Klient z 5★ trafia do programu lojalnościowego, klient z 2★ — do follow-upu obsługi klienta. Wszystko w jednym panelu.</p>
+        </div>
+        <div class="reason-card solution">
+          <h3>Zgodność z Omnibus bez prawnika</h3>
+          <p>Tylko zweryfikowane opinie od osób, które naprawdę kupiły. Pełna zgodność z dyrektywą Omnibus z pudełka — bez ryzyka kary do 10% obrotu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq">
+      <div class="section-header">
+        <span class="eyebrow">FAQ</span>
+        <h2>Najczęstsze <em>pytania</em></h2>
+      </div>
+      <details>
+        <summary>Skąd biorą się domyślne wartości współczynnika opinii i wzrostu konwersji?</summary>
+        <p>Z benchmarków aktywnych klientów edrone, którzy mają wdrożone Reviews. Domyślny współczynnik 15% to środek rozkładu — sklepy korzystające ze wszystkich 3 kanałów (Email + SMS + WhatsApp) osiągają 20–30%, te które wysyłają tylko email — 5–10%. Wzrost konwersji 10% odpowiada średniemu efektowi pokazania zweryfikowanych opinii na karcie produktu vs. brak opinii.</p>
+      </details>
+      <details>
+        <summary>Czy edrone Reviews jest zgodne z dyrektywą Omnibus?</summary>
+        <p>Tak. Każda opinia opublikowana przez edrone Reviews jest zweryfikowana — pochodzi od osoby, która faktycznie kupiła dany produkt, i jest oznaczona badge'em „zweryfikowany zakup". To pełna zgodność z dyrektywą Omnibus z pudełka, bez konfiguracji.</p>
+      </details>
+      <details>
+        <summary>Co z opiniami, które już mam (np. na TrustMate, Trusted Shops)?</summary>
+        <p>Migrujemy historyczne opinie z TrustMate, Trusted Shops oraz z dowolnego pliku CSV — zachowując daty, autorów i oceny. Od pierwszego dnia masz pełny katalog opinii u siebie, bez czekania na zebranie nowych.</p>
+      </details>
+      <details>
+        <summary>Jakie kanały zbierania opinii są dostępne?</summary>
+        <p>Trzy: <strong>Email, SMS i WhatsApp</strong>. edrone wybiera kanał, w którym klient odpowie najszybciej — albo wysyła sekwencyjnie (najpierw WhatsApp, fallback do SMS, potem email). WhatsApp ma najwyższą skuteczność (98% open rate).</p>
+      </details>
+      <details>
+        <summary>Czy mogę moderować opinie przed publikacją?</summary>
+        <p>Tak. Wybierasz tryb: automatyczna publikacja, ręczna moderacja każdej opinii albo moderacja tylko dla ocen poniżej progu (np. ≤3★). W każdej chwili możesz odpowiedzieć na opinię bezpośrednio z panelu edrone.</p>
+      </details>
+      <details>
+        <summary>Ile trwa wdrożenie?</summary>
+        <p><strong>15 minut.</strong> Włączasz Reviews w panelu edrone, wybierasz styl widgetu (z 7 dostępnych) i konfigurujesz kanały zbierania. Integracja z 25+ platformami e-commerce — Shopify, WooCommerce, PrestaShop, Shoper, IdoSell i innymi. Pierwsze opinie pojawiają się zwykle w ciągu kilku dni.</p>
+      </details>
+      <details>
+        <summary>Mam wiele sklepów / workspace'ów. Jak jestem rozliczany?</summary>
+        <p>Opłata minimalna dotyczy każdego workspace'u (każdego trackera), zgodnie z Twoją obecną strukturą licencji edrone.</p>
+      </details>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+      <h2 id="finalCtaHeader">Nie odkładaj zaufania na później.</h2>
+      <p>Masz już silnik AI edrone, który codziennie zarabia dla Ciebie na e-mailu, SMS-ie, WhatsApp-ie i automatyzacjach. Czas dodać warstwę, która sprzedaje sama — opinie Twoich klientów.</p>
+      <div class="timing">
+        <div>⚡ Instalacja: <strong>15 minut</strong></div>
+        <div>⭐ Pierwsze opinie: <strong>w tym tygodniu</strong></div>
+        <div>💰 Płacisz tylko za <strong>efekt</strong></div>
+      </div>
+      <button type="button" id="finalBookBtn" class="cta-section-btn">Włącz Reviews</button>
+    </section>
+
+    <footer id="footer">Domyślne parametry oparte o benchmark edrone z aktywnych klientów PL.</footer>
+  </main>
+
+<script>
+(function () {
+  const LOCALE = "pl-PL";
+
+  const TIERS = [
+    { tier: 1, max: 100,    rate: 0.99, label: "0–100" },
+    { tier: 2, max: 250,    rate: 0.76, label: "101–250" },
+    { tier: 3, max: 500,    rate: 0.60, label: "251–500" },
+    { tier: 4, max: 1000,   rate: 0.45, label: "501–1 000" },
+    { tier: 5, max: 2000,   rate: 0.32, label: "1 001–2 000" },
+    { tier: 6, max: 3500,   rate: 0.26, label: "2 001–3 500" },
+    { tier: 7, max: 5000,   rate: 0.23, label: "3 501–5 000" },
+    { tier: 8, max: 10000,  rate: 0.14, label: "5 001–10 000" },
+    { tier: 9, max: Infinity, rate: 0.14, label: "10 000+" },
+  ];
+
+  const state = { period: "month", lastPrice: 0 };
+
+  function fmtInt(n) {
+    return new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 0 }).format(n);
+  }
+  function fmtMoney(n) {
+    return fmtInt(Math.round(n)) + " zł";
+  }
+  function fmtRate(n) {
+    return n.toFixed(2).replace(".", ",") + " zł";
+  }
+  function showError(msg) {
+    const el = document.getElementById("errorMsg");
+    el.textContent = msg;
+    el.classList.remove("hidden");
+  }
+  function clearError() {
+    document.getElementById("errorMsg").classList.add("hidden");
+  }
+  function $(id) { return document.getElementById(id); }
+
+  function readNumber(id) { return Number($(id).value); }
+
+  function findTier(orders) {
+    for (const t of TIERS) {
+      if (orders <= t.max) return t;
+    }
+    return TIERS[TIERS.length - 1];
+  }
+
+  function syncDisplays() {
+    $("ordersDisplay").textContent = fmtInt(readNumber("orders"));
+  }
+
+  function highlightTier(tierNum) {
+    document.querySelectorAll("#pricingTable tbody tr").forEach((row) => {
+      const isActive = Number(row.getAttribute("data-tier")) === tierNum;
+      row.style.background = isActive ? "rgba(236, 255, 90, 0.35)" : "";
+      row.style.fontWeight = isActive ? "700" : "";
+    });
+  }
+
+  function calculate() {
+    clearError();
+    const shop = $("shopName").value.trim();
+    const orders = readNumber("orders");
+
+    if (!Number.isFinite(orders) || orders < 0) {
+      showError("Podaj liczbę zamówień większą lub równą zero.");
+      return;
+    }
+
+    const t = findTier(orders);
+    const monthly = orders * t.rate;
+    state.lastPrice = monthly;
+
+    const shopName = shop || "Twojego sklepu";
+    $("shopHeading").textContent = shopName;
+    $("ctaShopName").textContent = shop ? shop : "Twojego sklepu";
+    $("shopMeta").textContent =
+      "Zamówienia: " + fmtInt(orders) + " / mies.  •  Próg " + t.tier + " (" + t.label + ")";
+
+    $("kpiBracket").textContent = t.label;
+    $("kpiBracketSub").textContent = "Próg " + t.tier + " z 9";
+    $("kpiRate").textContent = fmtRate(t.rate);
+    $("kpiPriceSub").textContent = fmtRate(t.rate) + " × " + fmtInt(orders) + " zamówień";
+
+    renderPriceKpi();
+    highlightTier(t.tier);
+
+    $("finalCtaHeader").textContent = shop
+      ? "Włącz Reviews dla " + shop + "."
+      : "Nie odkładaj zaufania na później.";
+  }
+
+  function renderPriceKpi() {
+    const multiplier = state.period === "year" ? 12 : 1;
+    $("kpiPrice").textContent = fmtMoney(state.lastPrice * multiplier);
+  }
+
+  $("orders").addEventListener("input", () => {
+    syncDisplays();
+    calculate();
+  });
+  $("shopName").addEventListener("input", () => calculate());
+
+  $("bookBtn").addEventListener("click", () => {
+    document.querySelector(".cta-section").scrollIntoView({ behavior: "smooth" });
+  });
+  const finalBtn = $("finalBookBtn");
+  if (finalBtn) {
+    finalBtn.addEventListener("click", () => {
+      document.querySelector(".calc-wrap").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  document.querySelectorAll(".kpi-toggle button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const group = btn.parentElement;
+      group.querySelectorAll("button").forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+      state.period = btn.dataset.period;
+      renderPriceKpi();
+    });
+  });
+
+  syncDisplays();
+  calculate();
+})();
+</script>
+</body>
+</html>
