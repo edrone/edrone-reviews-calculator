@@ -111,9 +111,9 @@
 
   /* PLANS COMPARE (between hero and calculator) */
   .plans-block {
-    background: var(--bg-dark);
-    color: var(--text-inv);
-    padding: 56px 32px 80px;
+    background: var(--bg);
+    color: var(--text);
+    padding: 64px 32px 56px;
   }
   .plans-inner {
     max-width: 1040px;
@@ -132,7 +132,7 @@
     padding: 5px 14px;
     border-radius: 999px;
     margin-bottom: 16px;
-    border: 1.5px solid var(--accent);
+    border: 1.5px solid var(--text);
   }
   .plans-block .eyebrow-light::before {
     content: "";
@@ -141,7 +141,7 @@
     border-radius: 50%;
   }
   .plans-block h2 {
-    color: var(--accent);
+    color: var(--text);
     font-size: 38px;
     font-weight: 800;
     margin: 0 0 14px;
@@ -151,20 +151,19 @@
   }
   .plans-block h2 em {
     font-style: normal;
-    background: linear-gradient(180deg, transparent 58%, rgba(90,227,227,0.45) 58%, rgba(90,227,227,0.45) 92%, transparent 92%);
+    background: linear-gradient(180deg, transparent 58%, var(--accent) 58%, var(--accent) 92%, transparent 92%);
     padding: 0 6px;
     margin: 0 -3px;
-    color: #fff;
   }
   .plans-block .plans-lead {
-    color: var(--muted-dark);
+    color: var(--muted);
     font-size: 16px;
     line-height: 1.6;
     margin: 0 0 36px;
     max-width: 700px;
   }
   @media (max-width: 640px) {
-    .plans-block { padding: 40px 22px 56px; }
+    .plans-block { padding: 48px 22px 40px; }
     .plans-block h2 { font-size: 28px; }
   }
   .plan-highlights {
@@ -175,8 +174,8 @@
   }
   @media (max-width: 760px) { .plan-highlights { grid-template-columns: 1fr; } }
   .plan-highlight {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 22px;
   }
@@ -184,7 +183,7 @@
     width: 40px; height: 40px;
     border-radius: 10px;
     background: var(--accent);
-    border: 2px solid var(--accent);
+    border: 2px solid var(--text);
     color: var(--text);
     display: flex;
     align-items: center;
@@ -194,14 +193,14 @@
     margin-bottom: 14px;
   }
   .plan-highlight h3 {
-    color: var(--accent);
+    color: var(--text);
     font-size: 16px;
     margin: 0 0 6px;
     font-weight: 800;
     letter-spacing: -0.005em;
   }
   .plan-highlight p {
-    color: var(--muted-dark);
+    color: var(--muted);
     font-size: 13.5px;
     line-height: 1.55;
     margin: 0;
@@ -214,51 +213,54 @@
   }
   @media (max-width: 760px) { .plan-compare { grid-template-columns: 1fr; } }
   .plan-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 24px;
+    color: var(--text);
   }
   .plan-card.paid {
-    background: var(--accent);
-    color: var(--text);
-    border-color: var(--accent);
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-color: var(--bg-dark);
     position: relative;
   }
   .plan-card.paid::after {
     content: "REKOMENDOWANY";
     position: absolute;
     top: -12px; right: 22px;
-    background: var(--text);
-    color: var(--accent);
+    background: var(--accent);
+    color: var(--text);
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.1em;
     padding: 5px 12px;
     border-radius: 999px;
+    border: 1.5px solid var(--text);
   }
   .plan-card .plan-name {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: var(--muted-dark);
+    color: var(--muted);
     font-weight: 700;
     margin: 0 0 6px;
   }
-  .plan-card.paid .plan-name { color: rgba(30,30,30,0.65); }
+  .plan-card.paid .plan-name { color: var(--accent-2); }
   .plan-card .plan-title {
     font-size: 26px;
     font-weight: 800;
     margin: 0 0 4px;
     letter-spacing: -0.02em;
   }
+  .plan-card.paid .plan-title { color: var(--accent); }
   .plan-card .plan-price {
     font-size: 13px;
-    color: var(--muted-dark);
+    color: var(--muted);
     margin: 0 0 18px;
     font-weight: 600;
   }
-  .plan-card.paid .plan-price { color: rgba(30,30,30,0.7); }
+  .plan-card.paid .plan-price { color: var(--muted-dark); }
   .plan-card ul {
     list-style: none;
     padding: 0;
@@ -271,10 +273,10 @@
     padding: 8px 0;
     font-size: 14px;
     line-height: 1.45;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid var(--border);
   }
   .plan-card.paid li {
-    border-top-color: rgba(30,30,30,0.12);
+    border-top-color: rgba(255,255,255,0.1);
   }
   .plan-card li:first-child { border-top: none; }
   .plan-card li::before {
@@ -285,15 +287,15 @@
     width: 16px;
   }
   .plan-card.paid li::before {
-    color: var(--text);
+    color: var(--accent);
   }
   .plan-card li.absent {
-    color: var(--muted-dark);
-    opacity: 0.6;
+    color: var(--muted);
+    opacity: 0.55;
   }
   .plan-card li.absent::before {
     content: "✕";
-    color: var(--muted-dark);
+    color: var(--danger);
   }
   .plan-card li.new {
     font-weight: 700;
@@ -301,11 +303,11 @@
   .plan-card li small {
     display: block;
     font-size: 11.5px;
-    color: rgba(30,30,30,0.65);
+    color: var(--muted);
     font-weight: 500;
     margin-top: 2px;
   }
-  .plan-card:not(.paid) li small {
+  .plan-card.paid li small {
     color: var(--muted-dark);
   }
 
