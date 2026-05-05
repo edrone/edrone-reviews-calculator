@@ -175,9 +175,21 @@
   }
   .plan-highlights {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
     margin-bottom: 32px;
+  }
+  .plan-highlight.featured {
+    grid-column: 1 / -1;
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-color: var(--bg-dark);
+  }
+  .plan-highlight.featured h3 { color: var(--accent); }
+  .plan-highlight.featured p { color: var(--muted-dark); }
+  .plan-highlight.featured .ph-icon {
+    background: var(--accent);
+    border-color: var(--accent);
   }
   @media (max-width: 760px) { .plan-highlights { grid-template-columns: 1fr; } }
   .plan-highlight {
@@ -1525,6 +1537,11 @@
       <p class="plans-lead">Wersja <strong>Free</strong> to solidny start: nielimitowane zbieranie opinii i podstawowy widget. Plan <strong>płatny</strong> dokłada to, co zamienia opinie w wzrost przychodów — Google Reviews, ochronę reputacji i publiczną stronę dla SEO.</p>
 
       <div class="plan-highlights">
+        <div class="plan-highlight featured">
+          <div class="ph-icon">✉</div>
+          <h3>Opinie w automatyzacjach i newsletterach edrone</h3>
+          <p>To największa przewaga planu płatnego: Twoje najwyżej oceniane produkty wpadają automatycznie do maili po-zakupowych, winbacków, newsletterów i automatyzacji edrone. Social proof trafia tam, gdzie sprzedaje — bez ręcznego copy-paste, bez dodatkowych narzędzi. Jedyne miejsce na rynku, gdzie opinie są natywnie zintegrowane z silnikiem Marketing Automation.</p>
+        </div>
         <div class="plan-highlight">
           <div class="ph-icon">G</div>
           <h3>Google Reviews — codzienny import</h3>
@@ -1555,6 +1572,7 @@
             <li>Pełna transparentność: rozkład ocen i filtrowanie</li>
             <li>Odpowiadanie na opinie</li>
             <li>Eksport opinii</li>
+            <li class="absent">Opinie w automatyzacjach i newsletterach edrone<small>Brak natywnej integracji z Marketing Automation</small></li>
             <li class="absent">Podgląd wszystkich opinii w panelu<small>Tylko 20 opinii widocznych</small></li>
             <li class="absent">Integracja z Google Reviews</li>
             <li class="absent">System Mediacji opinii &lt; 5★</li>
@@ -1568,6 +1586,7 @@
           <p class="plan-price">stawka maleje z liczbą zamówień — sprawdź cennik niżej</p>
           <ul>
             <li>Wszystko z planu Free</li>
+            <li class="new">Opinie w automatyzacjach i newsletterach edrone<small>Najwyżej oceniane produkty automatycznie w mailach po-zakupowych, winbackach i kampaniach Marketing Automation</small></li>
             <li class="new">Pełny podgląd opinii — bez limitu 20</li>
             <li class="new">Integracja z Google Reviews<small>Codzienny automatyczny import ocen z Google</small></li>
             <li class="new">System Mediacji<small>Blur opinii &lt; 5★, przypomnienia po 14 i 21 dniach, finalizacja po 30 dniach</small></li>
