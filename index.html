@@ -109,9 +109,209 @@
     padding: 0 28px 80px;
   }
 
+  /* PLANS COMPARE (between hero and calculator) */
+  .plans-block {
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    padding: 56px 32px 80px;
+  }
+  .plans-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .plans-block .eyebrow-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--accent);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    border: 1.5px solid var(--accent);
+  }
+  .plans-block .eyebrow-light::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--text);
+    border-radius: 50%;
+  }
+  .plans-block h2 {
+    color: var(--accent);
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0 0 14px;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    max-width: 760px;
+  }
+  .plans-block h2 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 58%, rgba(90,227,227,0.45) 58%, rgba(90,227,227,0.45) 92%, transparent 92%);
+    padding: 0 6px;
+    margin: 0 -3px;
+    color: #fff;
+  }
+  .plans-block .plans-lead {
+    color: var(--muted-dark);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 36px;
+    max-width: 700px;
+  }
+  @media (max-width: 640px) {
+    .plans-block { padding: 40px 22px 56px; }
+    .plans-block h2 { font-size: 28px; }
+  }
+  .plan-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 760px) { .plan-highlights { grid-template-columns: 1fr; } }
+  .plan-highlight {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .plan-highlight .ph-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--accent);
+    border: 2px solid var(--accent);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .plan-highlight h3 {
+    color: var(--accent);
+    font-size: 16px;
+    margin: 0 0 6px;
+    font-weight: 800;
+    letter-spacing: -0.005em;
+  }
+  .plan-highlight p {
+    color: var(--muted-dark);
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .plan-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 760px) { .plan-compare { grid-template-columns: 1fr; } }
+  .plan-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .plan-card.paid {
+    background: var(--accent);
+    color: var(--text);
+    border-color: var(--accent);
+    position: relative;
+  }
+  .plan-card.paid::after {
+    content: "REKOMENDOWANY";
+    position: absolute;
+    top: -12px; right: 22px;
+    background: var(--text);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .plan-card .plan-name {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted-dark);
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .plan-card.paid .plan-name { color: rgba(30,30,30,0.65); }
+  .plan-card .plan-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+  .plan-card .plan-price {
+    font-size: 13px;
+    color: var(--muted-dark);
+    margin: 0 0 18px;
+    font-weight: 600;
+  }
+  .plan-card.paid .plan-price { color: rgba(30,30,30,0.7); }
+  .plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .plan-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    line-height: 1.45;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .plan-card.paid li {
+    border-top-color: rgba(30,30,30,0.12);
+  }
+  .plan-card li:first-child { border-top: none; }
+  .plan-card li::before {
+    content: "✓";
+    color: var(--success);
+    font-weight: 800;
+    flex-shrink: 0;
+    width: 16px;
+  }
+  .plan-card.paid li::before {
+    color: var(--text);
+  }
+  .plan-card li.absent {
+    color: var(--muted-dark);
+    opacity: 0.6;
+  }
+  .plan-card li.absent::before {
+    content: "✕";
+    color: var(--muted-dark);
+  }
+  .plan-card li.new {
+    font-weight: 700;
+  }
+  .plan-card li small {
+    display: block;
+    font-size: 11.5px;
+    color: rgba(30,30,30,0.65);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .plan-card:not(.paid) li small {
+    color: var(--muted-dark);
+  }
+
   /* CALCULATOR CARD */
   .calc-wrap {
-    margin-top: -56px;
+    margin-top: 36px;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 18px;
@@ -132,7 +332,7 @@
     font-size: 14px;
   }
   @media (max-width: 640px) {
-    .calc-wrap { padding: 24px; margin-top: -40px; border-radius: 14px; }
+    .calc-wrap { padding: 24px; margin-top: 24px; border-radius: 14px; }
   }
 
   /* INPUT FIELDS */
@@ -1305,6 +1505,69 @@
         <div>✓ Wdrożenie w <span>15 minut</span></div>
         <div>✓ Bez kodowania</div>
         <div>✓ Płacisz tylko za <span>zamówienia</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plans-block">
+    <div class="plans-inner">
+      <span class="eyebrow-light">Free vs Plan płatny</span>
+      <h2>Wybierz plan dopasowany do <em>skali</em> biznesu</h2>
+      <p class="plans-lead">Wersja <strong>Free</strong> to solidny start: nielimitowane zbieranie opinii i podstawowy widget. Plan <strong>płatny</strong> dokłada to, co zamienia opinie w wzrost przychodów — Google Reviews, ochronę reputacji i publiczną stronę dla SEO.</p>
+
+      <div class="plan-highlights">
+        <div class="plan-highlight">
+          <div class="ph-icon">G</div>
+          <h3>Google Reviews — codzienny import</h3>
+          <p>Wszystkie Twoje oceny z Google trafiają codziennie do panelu edrone. Razem z opiniami ze sklepu — w jednym miejscu, z jednym widgetem na karcie produktu.</p>
+        </div>
+        <div class="plan-highlight">
+          <div class="ph-icon">🛡</div>
+          <h3>System Mediacji — chroń reputację</h3>
+          <p>Opinia poniżej 5★ trafia na 30 dni do mediacji (zablurowana). Klient dostaje przypomnienie po 14 i 21 dniach — masz czas rozwiązać problem, zanim ocena pójdzie publicznie.</p>
+        </div>
+        <div class="plan-highlight">
+          <div class="ph-icon">★</div>
+          <h3>Reviews Aggregator — strona SEO</h3>
+          <p>Twoja gotowa wizytówka pod adresem <strong>edrone.me/twojsklep</strong>. Wszystkie opinie razem, indeksowane przez Google. SEO boost bez dodatkowej pracy.</p>
+        </div>
+      </div>
+
+      <div class="plan-compare">
+        <div class="plan-card">
+          <p class="plan-name">Free</p>
+          <p class="plan-title">0 zł</p>
+          <p class="plan-price">na start, bez ograniczeń czasowych</p>
+          <ul>
+            <li>Nielimitowane zbieranie opinii<small>Email + SMS + WhatsApp (SMS i WhatsApp wg cennika edrone)</small></li>
+            <li>Nielimitowana wysyłka próśb o opinię</li>
+            <li>Import opinii z innych narzędzi (TrustMate, Trusted Shops, CSV)</li>
+            <li>Widget on-site (wersja podstawowa)</li>
+            <li>Pełna transparentność: rozkład ocen i filtrowanie</li>
+            <li>Odpowiadanie na opinie</li>
+            <li>Eksport opinii</li>
+            <li class="absent">Podgląd wszystkich opinii w panelu<small>Tylko 20 opinii widocznych</small></li>
+            <li class="absent">Integracja z Google Reviews</li>
+            <li class="absent">System Mediacji opinii &lt; 5★</li>
+            <li class="absent">Reviews Aggregator (publiczna strona SEO)</li>
+            <li class="absent">Zaawansowane widgety produktowe</li>
+          </ul>
+        </div>
+        <div class="plan-card paid">
+          <p class="plan-name">Plan płatny</p>
+          <p class="plan-title">Od 0,14 zł / zamówienie</p>
+          <p class="plan-price">stawka maleje z liczbą zamówień — sprawdź cennik niżej</p>
+          <ul>
+            <li>Wszystko z planu Free</li>
+            <li class="new">Pełny podgląd opinii — bez limitu 20</li>
+            <li class="new">Integracja z Google Reviews<small>Codzienny automatyczny import ocen z Google</small></li>
+            <li class="new">System Mediacji<small>Blur opinii &lt; 5★, przypomnienia po 14 i 21 dniach, finalizacja po 30 dniach</small></li>
+            <li class="new">Reviews Aggregator<small>Publiczna strona pod edrone.me — gotowa wizytówka i SEO boost</small></li>
+            <li class="new">Zaawansowane widgety produktowe<small>7 stylów dopasowanych do designu sklepu</small></li>
+            <li class="new">Verified purchase + zgodność z Omnibus</li>
+            <li class="new">Wsparcie wdrożenia</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
