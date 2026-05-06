@@ -1582,8 +1582,8 @@
         </div>
         <div class="plan-card paid">
           <p class="plan-name">Plan płatny</p>
-          <p class="plan-title">Od 0,14 zł / zamówienie</p>
-          <p class="plan-price">stawka maleje z liczbą zamówień — sprawdź cennik niżej</p>
+          <p class="plan-title">Od 49 zł / mies.</p>
+          <p class="plan-price">cennik kaskadowy — kolejne progi po niższej stawce; przy 2 000 zam. ≈ 907 zł / mies.</p>
           <ul>
             <li>Wszystko z planu Free</li>
             <li class="new">Opinie w automatyzacjach i newsletterach edrone<small>Najwyżej oceniane produkty automatycznie w mailach po-zakupowych, winbackach i kampaniach Marketing Automation</small></li>
@@ -1630,9 +1630,9 @@
 
         <div class="kpis">
           <div class="kpi">
-            <p class="kpi-label">Twój próg</p>
+            <p class="kpi-label">Najwyższy próg</p>
             <p class="kpi-value" id="kpiBracket" style="font-size:26px;">—</p>
-            <p class="kpi-sub" id="kpiBracketSub">zamówień / mies.</p>
+            <p class="kpi-sub" id="kpiBracketSub">z 10 progów</p>
           </div>
           <div class="kpi highlight">
             <div class="kpi-header">
@@ -1643,30 +1643,28 @@
               </div>
             </div>
             <p class="kpi-value" id="kpiPrice">—</p>
-            <p class="kpi-sub" id="kpiPriceSub">— zł × — zamówień</p>
+            <p class="kpi-sub" id="kpiPriceSub">kaskadowo</p>
           </div>
           <div class="kpi">
-            <p class="kpi-label">Cena za zamówienie</p>
+            <p class="kpi-label">Średnia za zamówienie</p>
             <p class="kpi-value" id="kpiRate">—</p>
-            <p class="kpi-sub">netto, w Twoim progu</p>
+            <p class="kpi-sub">cena netto ÷ liczba zamówień</p>
           </div>
         </div>
 
         <div class="breakdown">
-          <h4>Co dostajesz w cenie</h4>
-          <div class="row" style="align-items: flex-start;">
+          <h4>Jak składa się Twoja cena (kaskadowo)</h4>
+          <div id="tierBreakdown"></div>
+          <div class="row net" style="margin-top: 8px;">
             <span class="lbl">
-              ✓ Automatyczne zbieranie opinii: Email + SMS + WhatsApp
-              <small style="display:block; font-size:11px; color: var(--muted-dark); font-weight: 400; margin-top: 2px; opacity: 0.85;">Email w cenie. SMS i WhatsApp rozliczane wg cennika edrone.</small>
+              ✅ Razem netto / mies.
+              <small>suma wszystkich progów po kaskadowym naliczeniu</small>
             </span>
-            <span class="val">w cenie*</span>
+            <span class="val" id="kpiPriceMirror">—</span>
           </div>
-          <div class="row"><span class="lbl">✓ 7 stylów widgetów na karcie produktu</span><span class="val">w cenie</span></div>
-          <div class="row"><span class="lbl">✓ Verified purchase + zgodność z Omnibus</span><span class="val">w cenie</span></div>
-          <div class="row"><span class="lbl">✓ Migracja z TrustMate / Trusted Shops / CSV</span><span class="val">w cenie</span></div>
-          <div class="row"><span class="lbl">✓ Integracja z 25+ platformami e-commerce</span><span class="val">w cenie</span></div>
-          <div class="row"><span class="lbl">✓ Moderacja, odpowiedzi i rozkład ocen</span><span class="val">w cenie</span></div>
-          <div class="row"><span class="lbl">✓ Wdrożenie i wsparcie</span><span class="val">0 zł</span></div>
+          <p style="font-size: 12px; color: var(--muted-dark); margin: 14px 0 0; line-height: 1.5; opacity: 0.85;">
+            Cena liczona kaskadowo (Stripe-style graduated): każdy próg dolicza tylko do liczby zamówień mieszczących się w jego przedziale. Email, wdrożenie, integracja, migracja z TrustMate / Trusted Shops oraz dowolna liczba widgetów — w cenie. SMS i WhatsApp rozliczane wg osobnego cennika edrone.
+          </p>
         </div>
 
         <div class="results-summary">
@@ -1688,27 +1686,28 @@
     <!-- PRICING TIERS — directly under results -->
     <section class="section" style="margin-top: 36px;">
       <div class="section-header">
-        <span class="eyebrow">Progi rozliczeniowe</span>
+        <span class="eyebrow">Progi rozliczeniowe (kaskadowo)</span>
         <h2>Cały cennik na <em>jednym ekranie</em></h2>
-        <p class="section-lead">Im większy sklep, tym niższa stawka za zamówienie — automatycznie. Twój aktualny próg jest podświetlony.</p>
+        <p class="section-lead">Cena liczona <strong>kaskadowo</strong> — każdy próg dolicza tylko do liczby zamówień mieszczących się w jego przedziale (Stripe-style graduated). Im większy sklep, tym niższa stawka za kolejne zamówienie. Progi, które wykorzystujesz, są podświetlone.</p>
       </div>
       <table class="pricing-table" id="pricingTable">
         <thead>
-          <tr><th>Poziom</th><th>Liczba zamówień / mies.</th><th>Cena za zamówienie</th></tr>
+          <tr><th>Poziom</th><th>Liczba zamówień</th><th>Stawka</th></tr>
         </thead>
         <tbody>
-          <tr data-tier="1"><td>1</td><td>0–100</td><td><strong>0,99 zł</strong></td></tr>
-          <tr data-tier="2"><td>2</td><td>101–250</td><td><strong>0,76 zł</strong></td></tr>
-          <tr data-tier="3"><td>3</td><td>251–500</td><td><strong>0,60 zł</strong></td></tr>
-          <tr data-tier="4"><td>4</td><td>501–1 000</td><td><strong>0,45 zł</strong></td></tr>
-          <tr data-tier="5"><td>5</td><td>1 001–2 000</td><td><strong>0,32 zł</strong></td></tr>
-          <tr data-tier="6"><td>6</td><td>2 001–3 500</td><td><strong>0,26 zł</strong></td></tr>
-          <tr data-tier="7"><td>7</td><td>3 501–5 000</td><td><strong>0,23 zł</strong></td></tr>
-          <tr data-tier="8"><td>8</td><td>5 001–10 000</td><td><strong>0,14 zł</strong></td></tr>
-          <tr data-tier="9"><td>9</td><td>10 000+</td><td><strong>0,14 zł</strong></td></tr>
+          <tr data-tier="1"><td>1</td><td>Pierwsze 1–50</td><td><strong>49,00 zł</strong> <small style="opacity:0.65;font-weight:400;">opłata stała</small></td></tr>
+          <tr data-tier="2"><td>2</td><td>Kolejne 51–100</td><td><strong>0,99 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="3"><td>3</td><td>Kolejne 101–250</td><td><strong>0,76 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="4"><td>4</td><td>Kolejne 251–500</td><td><strong>0,60 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="5"><td>5</td><td>Kolejne 501–1 000</td><td><strong>0,45 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="6"><td>6</td><td>Kolejne 1 001–2 000</td><td><strong>0,32 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="7"><td>7</td><td>Kolejne 2 001–3 500</td><td><strong>0,26 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="8"><td>8</td><td>Kolejne 3 501–5 000</td><td><strong>0,23 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="9"><td>9</td><td>Kolejne 5 001–10 000</td><td><strong>0,14 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
+          <tr data-tier="10"><td>10</td><td>Powyżej 10 000</td><td><strong>0,14 zł</strong> <small style="opacity:0.65;font-weight:400;">/ zamówienie</small></td></tr>
         </tbody>
       </table>
-      <p class="pricing-note">Stawka × liczba zamówień w danym miesiącu = Twoja cena netto. <strong>Bez opłaty bazowej, bez ukrytych kosztów, bez „pakietów"</strong>. Wdrożenie, integracja, prośby Email/SMS/WhatsApp i migracja z TrustMate / Trusted Shops — w cenie.</p>
+      <p class="pricing-note"><strong>Przykład</strong>: dla 2 000 zamówień / mies. cena to 49 zł (pierwsze 50) + 50 × 0,99 zł + 150 × 0,76 zł + 250 × 0,60 zł + 500 × 0,45 zł + 1 000 × 0,32 zł = <strong>907,50 zł netto</strong>. Wdrożenie, integracja, dowolna liczba widgetów i migracja z TrustMate / Trusted Shops / CSV — w cenie. SMS i WhatsApp wg osobnego cennika edrone.</p>
     </section>
 
     <!-- STATS / SOCIAL PROOF -->
@@ -2027,16 +2026,20 @@
 (function () {
   const LOCALE = "pl-PL";
 
+  // Graduated (Stripe-style) tiered pricing.
+  // Each tier covers units from (prev.upTo + 1) to upTo.
+  // Tier 1 has flatAmount: it's a flat fee for any usage in that range.
   const TIERS = [
-    { tier: 1, max: 100,    rate: 0.99, label: "0–100" },
-    { tier: 2, max: 250,    rate: 0.76, label: "101–250" },
-    { tier: 3, max: 500,    rate: 0.60, label: "251–500" },
-    { tier: 4, max: 1000,   rate: 0.45, label: "501–1 000" },
-    { tier: 5, max: 2000,   rate: 0.32, label: "1 001–2 000" },
-    { tier: 6, max: 3500,   rate: 0.26, label: "2 001–3 500" },
-    { tier: 7, max: 5000,   rate: 0.23, label: "3 501–5 000" },
-    { tier: 8, max: 10000,  rate: 0.14, label: "5 001–10 000" },
-    { tier: 9, max: Infinity, rate: 0.14, label: "10 000+" },
+    { tier: 1,  upTo: 50,        unitPrice: null, flatAmount: 49.00, label: "1–50",          range: "Pierwsze 1–50" },
+    { tier: 2,  upTo: 100,       unitPrice: 0.99, flatAmount: null,  label: "51–100",        range: "Kolejne 51–100" },
+    { tier: 3,  upTo: 250,       unitPrice: 0.76, flatAmount: null,  label: "101–250",       range: "Kolejne 101–250" },
+    { tier: 4,  upTo: 500,       unitPrice: 0.60, flatAmount: null,  label: "251–500",       range: "Kolejne 251–500" },
+    { tier: 5,  upTo: 1000,      unitPrice: 0.45, flatAmount: null,  label: "501–1 000",     range: "Kolejne 501–1 000" },
+    { tier: 6,  upTo: 2000,      unitPrice: 0.32, flatAmount: null,  label: "1 001–2 000",   range: "Kolejne 1 001–2 000" },
+    { tier: 7,  upTo: 3500,      unitPrice: 0.26, flatAmount: null,  label: "2 001–3 500",   range: "Kolejne 2 001–3 500" },
+    { tier: 8,  upTo: 5000,      unitPrice: 0.23, flatAmount: null,  label: "3 501–5 000",   range: "Kolejne 3 501–5 000" },
+    { tier: 9,  upTo: 10000,     unitPrice: 0.14, flatAmount: null,  label: "5 001–10 000",  range: "Kolejne 5 001–10 000" },
+    { tier: 10, upTo: Infinity,  unitPrice: 0.14, flatAmount: null,  label: "10 001+",       range: "Powyżej 10 000" },
   ];
 
   const state = { period: "month", lastPrice: 0 };
@@ -2045,7 +2048,8 @@
     return new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 0 }).format(n);
   }
   function fmtMoney(n) {
-    return fmtInt(Math.round(n)) + " zł";
+    if (Math.abs(n - Math.round(n)) < 0.005) return fmtInt(Math.round(n)) + " zł";
+    return n.toFixed(2).replace(".", ",") + " zł";
   }
   function fmtRate(n) {
     return n.toFixed(2).replace(".", ",") + " zł";
@@ -2062,23 +2066,75 @@
 
   function readNumber(id) { return Number($(id).value); }
 
-  function findTier(orders) {
+  // Graduated pricing: walk tiers, accumulate cost per slice of orders.
+  function calculateGraduated(orders) {
+    const breakdown = [];
+    let total = 0;
+    let currentTier = TIERS[0];
+    if (orders <= 0) return { total: 0, breakdown, currentTier };
+
+    let processed = 0;
     for (const t of TIERS) {
-      if (orders <= t.max) return t;
+      if (processed >= orders) break;
+      const tierFloor = processed; // exclusive lower bound
+      const tierTop = Math.min(orders, t.upTo);
+      const unitsInTier = tierTop - tierFloor;
+      if (unitsInTier <= 0) continue;
+
+      let cost;
+      if (t.flatAmount !== null) {
+        cost = t.flatAmount;
+        breakdown.push({ tier: t, units: unitsInTier, cost, isFlat: true });
+      } else {
+        cost = unitsInTier * t.unitPrice;
+        breakdown.push({ tier: t, units: unitsInTier, cost, isFlat: false });
+      }
+      total += cost;
+      processed = tierTop;
+      currentTier = t;
     }
-    return TIERS[TIERS.length - 1];
+    return { total, breakdown, currentTier };
   }
 
   function syncDisplays() {
     $("ordersDisplay").textContent = fmtInt(readNumber("orders"));
   }
 
-  function highlightTier(tierNum) {
+  function highlightTiers(currentTierNum, usedTierNums) {
     document.querySelectorAll("#pricingTable tbody tr").forEach((row) => {
-      const isActive = Number(row.getAttribute("data-tier")) === tierNum;
-      row.style.background = isActive ? "rgba(236, 255, 90, 0.35)" : "";
-      row.style.fontWeight = isActive ? "700" : "";
+      const t = Number(row.getAttribute("data-tier"));
+      const isCurrent = t === currentTierNum;
+      const isUsed = usedTierNums.has(t);
+      if (isCurrent) {
+        row.style.background = "rgba(236, 255, 90, 0.5)";
+        row.style.fontWeight = "700";
+      } else if (isUsed) {
+        row.style.background = "rgba(236, 255, 90, 0.15)";
+        row.style.fontWeight = "";
+      } else {
+        row.style.background = "";
+        row.style.fontWeight = "";
+      }
     });
+  }
+
+  function renderTierBreakdown(breakdown, total) {
+    const host = $("tierBreakdown");
+    if (!host) return;
+    if (!breakdown.length) {
+      host.innerHTML = '<div class="row"><span class="lbl">Brak naliczonych zamówień</span><span class="val">0 zł</span></div>';
+      return;
+    }
+    const rows = breakdown.map((b) => {
+      const right = b.isFlat
+        ? "<strong>" + fmtMoney(b.cost) + "</strong> <small style=\"opacity:0.6;font-weight:400;\">(opłata stała)</small>"
+        : "<strong>" + fmtMoney(b.cost) + "</strong>";
+      const left = b.isFlat
+        ? b.tier.range + " <small style=\"display:block;opacity:0.6;font-size:11.5px;font-weight:400;margin-top:2px;\">opłata stała 49 zł</small>"
+        : b.tier.range + " <small style=\"display:block;opacity:0.6;font-size:11.5px;font-weight:400;margin-top:2px;\">" + fmtInt(b.units) + " × " + fmtRate(b.tier.unitPrice) + "</small>";
+      return '<div class="row" style="align-items: flex-start;"><span class="lbl">' + left + '</span><span class="val">' + right + '</span></div>';
+    });
+    host.innerHTML = rows.join("");
   }
 
   function calculate() {
@@ -2091,23 +2147,34 @@
       return;
     }
 
-    const t = findTier(orders);
-    const monthly = orders * t.rate;
-    state.lastPrice = monthly;
+    const { total, breakdown, currentTier } = calculateGraduated(orders);
+    state.lastPrice = total;
 
     const shopName = shop || "Twojego sklepu";
     $("shopHeading").textContent = shopName;
     $("ctaShopName").textContent = shop ? shop : "Twojego sklepu";
     $("shopMeta").textContent =
-      "Zamówienia: " + fmtInt(orders) + " / mies.  •  Próg " + t.tier + " (" + t.label + ")";
+      "Zamówienia: " + fmtInt(orders) + " / mies.  •  Najwyższy próg: " + currentTier.tier + " (" + currentTier.label + ")";
 
-    $("kpiBracket").textContent = t.label;
-    $("kpiBracketSub").textContent = "Próg " + t.tier + " z 9";
-    $("kpiRate").textContent = fmtRate(t.rate);
-    $("kpiPriceSub").textContent = fmtRate(t.rate) + " × " + fmtInt(orders) + " zamówień";
+    $("kpiBracket").textContent = currentTier.label;
+    $("kpiBracketSub").textContent = "Najwyższy próg z 10";
+
+    // Average (blended) per-order rate
+    if (orders > 0) {
+      const avg = total / orders;
+      $("kpiRate").textContent = fmtRate(avg);
+    } else {
+      $("kpiRate").textContent = "—";
+    }
+
+    $("kpiPriceSub").textContent = orders > 0
+      ? "kaskadowo z " + breakdown.length + " " + (breakdown.length === 1 ? "progu" : "progów")
+      : "brak zamówień";
 
     renderPriceKpi();
-    highlightTier(t.tier);
+    const used = new Set(breakdown.map((b) => b.tier.tier));
+    highlightTiers(currentTier.tier, used);
+    renderTierBreakdown(breakdown, total);
 
     $("finalCtaHeader").textContent = shop
       ? "Włącz Reviews dla " + shop + "."
@@ -2116,7 +2183,10 @@
 
   function renderPriceKpi() {
     const multiplier = state.period === "year" ? 12 : 1;
-    $("kpiPrice").textContent = fmtMoney(state.lastPrice * multiplier);
+    const price = state.lastPrice * multiplier;
+    $("kpiPrice").textContent = fmtMoney(price);
+    const mirror = $("kpiPriceMirror");
+    if (mirror) mirror.textContent = fmtMoney(price);
   }
 
   $("orders").addEventListener("input", () => {
