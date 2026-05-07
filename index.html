@@ -2207,14 +2207,14 @@
   });
   $("shopName").addEventListener("input", () => calculate());
 
-  $("bookBtn").addEventListener("click", () => {
-    document.querySelector(".cta-section").scrollIntoView({ behavior: "smooth" });
-  });
+  const REVIEWS_APP_URL = "https://control.edrone.me/app/reviews/list";
+  function openReviewsApp() {
+    window.open(REVIEWS_APP_URL, "_blank", "noopener,noreferrer");
+  }
+  $("bookBtn").addEventListener("click", openReviewsApp);
   const finalBtn = $("finalBookBtn");
   if (finalBtn) {
-    finalBtn.addEventListener("click", () => {
-      document.querySelector(".calc-wrap").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    finalBtn.addEventListener("click", openReviewsApp);
   }
 
   document.querySelectorAll(".kpi-toggle button").forEach((btn) => {
