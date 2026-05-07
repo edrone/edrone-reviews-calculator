@@ -117,17 +117,50 @@
     padding: 0 28px 80px;
   }
 
-  /* PROOF BLOCK (between hero and plans) */
+  /* PROOF BLOCK (between hero and plans) — dark like results-block */
   .proof-block {
-    background: var(--bg);
-    color: var(--text);
-    padding: 64px 32px 8px;
+    background: var(--bg-dark);
+    color: var(--accent);
+    padding: 64px 32px 24px;
   }
   .proof-inner {
     max-width: 1040px;
     margin: 0 auto;
   }
   .proof-block .section { margin-top: 0; }
+  .proof-block .section h2 {
+    color: var(--accent);
+  }
+  .proof-block .section h2 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 58%, rgba(90,227,227,0.45) 58%, rgba(90,227,227,0.45) 92%, transparent 92%);
+    padding: 0 6px;
+    margin: 0 -3px;
+    color: #fff;
+  }
+  .proof-block .section .section-lead {
+    color: var(--accent);
+    opacity: 0.9;
+  }
+  .proof-block .section .section-lead strong {
+    color: #fff;
+    opacity: 1;
+  }
+  .proof-block .stat {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .proof-block .stat .num,
+  .proof-block .stat .desc {
+    color: var(--accent);
+  }
+  .proof-block .stat .num em {
+    background: rgba(236, 255, 90, 0.18);
+    color: var(--accent);
+  }
+  .proof-block .stat .src {
+    color: var(--muted-dark);
+  }
 
   /* PLANS COMPARE (between proof and calculator) */
   .plans-block {
