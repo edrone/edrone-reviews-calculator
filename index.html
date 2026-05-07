@@ -116,11 +116,23 @@
     padding: 0 28px 80px;
   }
 
-  /* PLANS COMPARE (between hero and calculator) */
+  /* PROOF BLOCK (between hero and plans) */
+  .proof-block {
+    background: var(--bg);
+    color: var(--text);
+    padding: 64px 32px 8px;
+  }
+  .proof-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .proof-block .section { margin-top: 0; }
+
+  /* PLANS COMPARE (between proof and calculator) */
   .plans-block {
     background: var(--bg);
     color: var(--text);
-    padding: 64px 32px 56px;
+    padding: 56px 32px 56px;
   }
   .plans-inner {
     max-width: 1040px;
@@ -1520,13 +1532,47 @@
   <section class="hero">
     <div class="hero-inner">
       <span class="pill">edrone Reviews</span>
-      <h1>Opinie, które <em>sprzedają</em>.</h1>
+      <h1><em>Opinie, które</em> sprzedają.</h1>
       <p class="lead">Automatyczne zbieranie opinii klientów przez Email, SMS i WhatsApp — z weryfikacją zakupu i zgodnością z Omnibus. Sprawdź, ile zapłacisz za <strong>Twój sklep</strong>.</p>
       <div class="badges">
         <div>✓ Wdrożenie w <span>15 minut</span></div>
         <div>✓ Bez kodowania</div>
         <div>✓ Płacisz tylko za <span>zamówienia</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="proof-block">
+    <div class="proof-inner">
+      <section class="section">
+        <div class="section-header">
+          <span class="eyebrow">Dowody</span>
+          <h2>Opinie to nie <em>„miły dodatek"</em></h2>
+          <p class="section-lead">Nikt nie kupuje od sklepu, do którego nie ma zaufania. Opinie to najtańszy i najszybszy sposób na zbudowanie tego zaufania <strong>w skali</strong>. Liczby są bezlitosne:</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <p class="num"><em>92%</em></p>
+            <p class="desc">kupujących ufa opiniom innych klientów bardziej niż reklamie</p>
+            <p class="src">Nielsen</p>
+          </div>
+          <div class="stat">
+            <p class="num"><em>63%</em></p>
+            <p class="desc">sprawdza opinie przed każdym zakupem online</p>
+            <p class="src">BazaarVoice</p>
+          </div>
+          <div class="stat">
+            <p class="num"><em>+270%</em></p>
+            <p class="desc">wzrostu konwersji dla produktów z 5+ opiniami vs. produktów bez opinii</p>
+            <p class="src">Spiegel Research Center</p>
+          </div>
+          <div class="stat">
+            <p class="num"><em>98%</em></p>
+            <p class="desc">open rate WhatsApp — najwyższa skuteczność prośby o opinię</p>
+            <p class="src">benchmarki branżowe</p>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 
@@ -1537,7 +1583,7 @@
       <p class="plans-lead">Wersja <strong>Free</strong> to solidny start: nielimitowane zbieranie opinii i podstawowy widget. Plan <strong>płatny</strong> dokłada to, co zamienia opinie w wzrost przychodów — Google Reviews, ochronę reputacji i publiczną stronę dla SEO.</p>
 
       <div class="plan-highlights">
-        <div class="plan-highlight featured">
+        <div class="plan-highlight">
           <div class="ph-icon">✉</div>
           <h3>Opinie w automatyzacjach i newsletterach edrone</h3>
           <p>To największa przewaga planu płatnego: jedyne miejsce na rynku, gdzie opinie są natywnie zintegrowane z silnikiem Marketing Automation.</p>
@@ -1710,36 +1756,6 @@
       <p class="pricing-note"><strong>Przykład</strong>: dla 2 000 zamówień / mies. cena to 49 zł (pierwsze 50) + 50 × 0,99 zł + 150 × 0,76 zł + 250 × 0,60 zł + 500 × 0,45 zł + 1 000 × 0,32 zł = <strong>907,50 zł netto</strong>. Wdrożenie, integracja, dowolna liczba widgetów i migracja z TrustMate / Trusted Shops / CSV — w cenie. SMS i WhatsApp wg osobnego cennika edrone.</p>
     </section>
 
-    <!-- STATS / SOCIAL PROOF -->
-    <section class="section">
-      <div class="section-header">
-        <span class="eyebrow">Dowody</span>
-        <h2>Recenzje to nie <em>„miły dodatek"</em></h2>
-        <p class="section-lead">Nikt nie kupuje od sklepu, do którego nie ma zaufania. Recenzje to najtańszy i najszybszy sposób na zbudowanie tego zaufania <strong>w skali</strong>. Liczby są bezlitosne:</p>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <p class="num"><em>92%</em></p>
-          <p class="desc">kupujących ufa opiniom innych klientów bardziej niż reklamie</p>
-          <p class="src">Nielsen</p>
-        </div>
-        <div class="stat">
-          <p class="num"><em>63%</em></p>
-          <p class="desc">sprawdza opinie przed każdym zakupem online</p>
-          <p class="src">BazaarVoice</p>
-        </div>
-        <div class="stat">
-          <p class="num"><em>+270%</em></p>
-          <p class="desc">wzrostu konwersji dla produktów z 5+ opiniami vs. produktów bez opinii</p>
-          <p class="src">Spiegel Research Center</p>
-        </div>
-        <div class="stat">
-          <p class="num"><em>98%</em></p>
-          <p class="desc">open rate WhatsApp — najwyższa skuteczność prośby o opinię</p>
-          <p class="src">benchmarki branżowe</p>
-        </div>
-      </div>
-    </section>
 
     <!-- PROBLEM SECTION -->
     <section class="section">
