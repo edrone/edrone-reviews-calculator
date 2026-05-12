@@ -1,0 +1,2292 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Calculadora de Avaliações — edrone Reviews</title>
+<style>
+  :root {
+    --bg: #F5F0E1;
+    --bg-dark: #1E1E1E;
+    --text: #1E1E1E;
+    --text-inv: #FAF5E6;
+    --muted: #6B6559;
+    --muted-dark: #B0B0B0;
+    --card: #FAF5E6;
+    --card-2: #F0EAD9;
+    --border: #E0DAC9;
+    --accent: #ECFF5A;
+    --accent-2: #5AE3E3;
+    --star: #FFB800;
+    --danger: #B00020;
+    --success: #1B7A3E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .topbar {
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg);
+  }
+  .topbar .brand {
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  .topbar .brand .dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1.5px solid var(--text);
+  }
+  .topbar .brand span { color: var(--muted); font-weight: 500; margin-left: 8px; }
+
+  /* HERO */
+  .hero {
+    background: var(--bg);
+    padding: 72px 32px 56px;
+    text-align: center;
+  }
+  .hero-inner { max-width: 820px; margin: 0 auto; }
+  .hero .pill {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1.5px solid var(--text);
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    color: var(--text);
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 58%, var(--accent) 58%, var(--accent) 92%, transparent 92%);
+    padding: 0 6px;
+    margin: 0 -3px;
+    color: var(--text);
+  }
+  .hero p.lead {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+    margin: 0 auto 28px;
+    max-width: 680px;
+  }
+  .hero .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 28px;
+    color: var(--text);
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  .hero .badges span { color: var(--text); font-weight: 800; background: var(--accent); padding: 0 4px; }
+  @media (max-width: 640px) {
+    .hero { padding: 48px 22px 40px; }
+    .hero h1 { font-size: 36px; }
+  }
+
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* PROOF BLOCK (between hero and plans) — dark like results-block */
+  .proof-block {
+    background: var(--bg-dark);
+    color: var(--accent);
+    padding: 64px 32px 24px;
+  }
+  .proof-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .proof-block .section { margin-top: 0; }
+  .proof-block .section h2 {
+    color: var(--accent);
+  }
+  .proof-block .section h2 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 58%, rgba(90,227,227,0.45) 58%, rgba(90,227,227,0.45) 92%, transparent 92%);
+    padding: 0 6px;
+    margin: 0 -3px;
+    color: #fff;
+  }
+  .proof-block .section .section-lead {
+    color: var(--accent);
+    opacity: 0.9;
+  }
+  .proof-block .section .section-lead strong {
+    color: #fff;
+    opacity: 1;
+  }
+  .proof-block .stat {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .proof-block .stat .num,
+  .proof-block .stat .desc {
+    color: var(--accent);
+  }
+  .proof-block .stat .num em {
+    background: rgba(236, 255, 90, 0.18);
+    color: var(--accent);
+  }
+  .proof-block .stat .src {
+    color: var(--muted-dark);
+  }
+
+  /* PLANS COMPARE (between proof and calculator) */
+  .plans-block {
+    background: var(--bg);
+    color: var(--text);
+    padding: 56px 32px 56px;
+  }
+  .plans-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .plans-block .eyebrow-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--accent);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    border: 1.5px solid var(--text);
+  }
+  .plans-block .eyebrow-light::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--text);
+    border-radius: 50%;
+  }
+  .plans-block h2 {
+    color: var(--text);
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0 0 14px;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    max-width: 760px;
+  }
+  .plans-block h2 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 58%, var(--accent) 58%, var(--accent) 92%, transparent 92%);
+    padding: 0 6px;
+    margin: 0 -3px;
+  }
+  .plans-block .plans-lead {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 36px;
+    max-width: 700px;
+  }
+  @media (max-width: 640px) {
+    .plans-block { padding: 48px 22px 40px; }
+    .plans-block h2 { font-size: 28px; }
+  }
+  .plan-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .plan-highlight.featured {
+    grid-column: 1 / -1;
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-color: var(--bg-dark);
+  }
+  .plan-highlight.featured h3 { color: var(--accent); }
+  .plan-highlight.featured p { color: var(--muted-dark); }
+  .plan-highlight.featured .ph-icon {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  @media (max-width: 760px) { .plan-highlights { grid-template-columns: 1fr; } }
+  .plan-highlight {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .plan-highlight .ph-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--accent);
+    border: 2px solid var(--text);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .plan-highlight h3 {
+    color: var(--text);
+    font-size: 16px;
+    margin: 0 0 6px;
+    font-weight: 800;
+    letter-spacing: -0.005em;
+  }
+  .plan-highlight p {
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .plan-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 760px) { .plan-compare { grid-template-columns: 1fr; } }
+  .plan-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    color: var(--text);
+  }
+  .plan-card.paid {
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-color: var(--bg-dark);
+    position: relative;
+  }
+  .plan-card.paid::after {
+    content: "RECOMENDADO";
+    position: absolute;
+    top: -12px; right: 22px;
+    background: var(--accent);
+    color: var(--text);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1.5px solid var(--text);
+  }
+  .plan-card .plan-name {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .plan-card.paid .plan-name { color: var(--accent-2); }
+  .plan-card .plan-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+  .plan-card.paid .plan-title { color: var(--accent); }
+  .plan-card .plan-price {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 18px;
+    font-weight: 600;
+  }
+  .plan-card.paid .plan-price { color: var(--muted-dark); }
+  .plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .plan-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    line-height: 1.45;
+    border-top: 1px solid var(--border);
+  }
+  .plan-card.paid li {
+    border-top-color: rgba(255,255,255,0.1);
+  }
+  .plan-card li:first-child { border-top: none; }
+  .plan-card li::before {
+    content: "✓";
+    color: var(--success);
+    font-weight: 800;
+    flex-shrink: 0;
+    width: 16px;
+  }
+  .plan-card.paid li::before {
+    color: var(--accent);
+  }
+  .plan-card li.absent {
+    color: var(--muted);
+    opacity: 0.55;
+  }
+  .plan-card li.absent::before {
+    content: "✕";
+    color: var(--danger);
+  }
+  .plan-card li.new {
+    font-weight: 700;
+  }
+  .plan-card li small {
+    display: block;
+    font-size: 11.5px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .plan-card.paid li small {
+    color: var(--muted-dark);
+  }
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    margin-left: 6px;
+    cursor: help;
+    border: 1.5px solid var(--text);
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+  /* CALCULATOR CARD */
+  .calc-wrap {
+    margin-top: 36px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px -28px rgba(30,30,30,0.25);
+    padding: 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .calc-wrap h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .calc-wrap .calc-sub {
+    margin: 0 0 26px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  @media (max-width: 640px) {
+    .calc-wrap { padding: 24px; margin-top: 24px; border-radius: 14px; }
+  }
+
+  /* INPUT FIELDS */
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .field { margin-bottom: 22px; }
+  .field-shop {
+    background: linear-gradient(180deg, #FFFEF3 0%, var(--card) 100%);
+    border: 2px solid var(--text);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 26px;
+  }
+  .field-shop label {
+    color: var(--text);
+    font-size: 13px;
+  }
+  .field-shop label::before {
+    content: "▸ ";
+    color: var(--text);
+  }
+  input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 17px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    font-family: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field-shop input[type="text"] {
+    font-size: 22px;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    padding: 6px 0;
+    letter-spacing: -0.01em;
+  }
+  .field-shop input[type="text"]:focus { outline: none; }
+  input:focus {
+    outline: none;
+    border-color: var(--text);
+    box-shadow: 0 0 0 4px rgba(236, 255, 90, 0.4);
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--border);
+    outline: none;
+    padding: 0;
+    margin: 6px 0 0;
+    cursor: pointer;
+  }
+  input[type="range"]:focus { outline: none; box-shadow: none; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2.5px solid var(--text);
+    box-shadow: 0 0 0 4px rgba(236, 255, 90, 0.25);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2.5px solid var(--text);
+    box-shadow: 0 0 0 4px rgba(236, 255, 90, 0.25);
+  }
+  .slider-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .slider-head .caption {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .slider-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.015em;
+  }
+  .slider-bounds {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  @media (max-width: 640px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 18px; }
+  }
+
+  /* ADVANCED PARAMS */
+  .params {
+    margin-top: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .params summary {
+    padding: 16px 22px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+  .params summary::-webkit-details-marker { display: none; }
+  .params summary::after {
+    content: "▼";
+    font-size: 11px;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .params[open] summary::after { transform: rotate(180deg); }
+  .params summary .badge-default {
+    margin-left: 10px;
+    font-size: 10px;
+    background: var(--accent);
+    color: var(--text);
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+    font-weight: 800;
+  }
+  .params .params-body {
+    padding: 8px 22px 22px;
+    border-top: 1px solid var(--border);
+    background: #fff;
+  }
+  .params-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 28px;
+    margin-top: 18px;
+  }
+  @media (max-width: 640px) { .params-grid { grid-template-columns: 1fr; gap: 18px; } }
+  .param-block label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .param-block .param-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .param-block .param-val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+  .param-block .hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 6px 0 0;
+    line-height: 1.45;
+  }
+  .fixed-pricing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: var(--card-2);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+  }
+  .fixed-pricing-item {
+    flex: 1 1 180px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 8px;
+  }
+  .fixed-pricing-item + .fixed-pricing-item {
+    border-left: 1px solid var(--border);
+    padding-left: 18px;
+  }
+  @media (max-width: 540px) {
+    .fixed-pricing-item + .fixed-pricing-item { border-left: none; padding-left: 8px; }
+  }
+  .fixed-pricing-item .fp-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .fixed-pricing-item .fp-value {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .params-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .btn-ghost {
+    background: #fff;
+    color: var(--text);
+    border: 1.5px solid var(--text);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-ghost:hover { background: var(--card-2); }
+
+  button.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--text);
+    border: 2px solid var(--text);
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+    box-shadow: 4px 4px 0 var(--text);
+    transition: transform 0.08s, box-shadow 0.08s;
+    margin-top: 18px;
+  }
+  button.cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--text);
+  }
+  button.cta:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--text);
+  }
+  button.cta:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 4px 4px 0 var(--text);
+  }
+  .error {
+    color: var(--danger);
+    font-size: 14px;
+    margin-top: 14px;
+    font-weight: 600;
+  }
+  .hidden { display: none !important; }
+
+  /* RESULTS */
+  .results-block {
+    margin-top: 36px;
+    padding: 32px 32px 8px;
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-block::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .results-for {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent-2);
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .results-shop {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    word-break: break-word;
+  }
+  .results-meta {
+    font-size: 14px;
+    color: var(--muted-dark);
+    margin: 0 0 28px;
+  }
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 760px) {
+    .kpis { grid-template-columns: 1fr; }
+    .results-block { padding: 24px 22px 8px; }
+    .results-shop { font-size: 28px; }
+  }
+  .kpi {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .kpi.highlight {
+    background: var(--accent);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  .kpi .kpi-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted-dark);
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+  .kpi.highlight .kpi-label { color: rgba(30,30,30,0.7); }
+  .kpi .kpi-value {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .kpi .kpi-sub {
+    font-size: 13px;
+    color: var(--muted-dark);
+    margin: 8px 0 0;
+  }
+  .kpi.highlight .kpi-sub { color: rgba(30,30,30,0.75); }
+  .kpi-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 0 10px;
+    flex-wrap: wrap;
+  }
+  .kpi-header .kpi-label { margin: 0; }
+  .kpi-toggle {
+    display: inline-flex;
+    background: rgba(30,30,30,0.12);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .kpi-toggle button {
+    background: transparent;
+    border: none;
+    padding: 5px 12px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(30,30,30,0.65);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .kpi-toggle button:hover { color: rgba(30,30,30,0.95); }
+  .kpi-toggle button.active {
+    background: var(--text);
+    color: var(--accent);
+  }
+
+  .breakdown {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 10px 0 18px;
+  }
+  .breakdown h4 {
+    margin: 0 0 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted-dark);
+    font-weight: 700;
+  }
+  .breakdown .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 14px;
+  }
+  .breakdown .row:first-of-type { border-top: none; }
+  .breakdown .row .lbl { color: var(--muted-dark); }
+  .breakdown .row .val { font-weight: 700; color: var(--text-inv); }
+  .breakdown .row.total .val { color: var(--accent); font-size: 16px; }
+  .breakdown .row.commission {
+    margin: 12px -22px;
+    padding: 16px 22px;
+    background: rgba(236, 255, 90, 0.12);
+    border-top: 1px solid rgba(236, 255, 90, 0.3);
+    border-bottom: 1px solid rgba(236, 255, 90, 0.3);
+    font-size: 17px;
+    align-items: center;
+  }
+  .breakdown .row.commission .lbl {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+  }
+  .breakdown .row.commission .lbl small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted-dark);
+    font-weight: 500;
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  .breakdown .row.commission .val {
+    color: var(--accent);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .breakdown .row.net {
+    margin: 12px -22px 0;
+    padding: 18px 22px;
+    background: rgba(236, 255, 90, 0.18);
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    font-size: 17px;
+    align-items: center;
+  }
+  .breakdown .row.net .lbl {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+  }
+  .breakdown .row.net .lbl small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted-dark);
+    font-weight: 500;
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  .breakdown .row.net .val {
+    color: var(--accent);
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+  }
+
+  .results-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    align-items: center;
+    padding: 18px 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 14px;
+    color: var(--muted-dark);
+  }
+  .results-summary strong { color: var(--accent); font-weight: 800; }
+
+  .results-cta {
+    margin: 24px -32px -8px;
+    padding: 32px;
+    background: var(--accent);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 760px) {
+    .results-cta { margin: 24px -22px -8px; padding: 26px 22px; }
+  }
+  .results-cta .copy { font-weight: 700; font-size: 17px; max-width: 480px; line-height: 1.4; }
+  .results-cta .small {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(30,30,30,0.75);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .results-cta button {
+    background: var(--text);
+    color: var(--accent);
+    border: none;
+    padding: 18px 36px;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 rgba(30,30,30,0.18);
+    transition: transform 0.08s, box-shadow 0.08s;
+    flex-shrink: 0;
+  }
+  .results-cta button:hover {
+    filter: brightness(1.1);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(30,30,30,0.22);
+  }
+  .results-cta button:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 rgba(30,30,30,0.18);
+  }
+
+  /* SECTIONS */
+  .section { margin-top: 80px; }
+  .section-header { margin-bottom: 36px; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--accent);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    border: 1.5px solid var(--text);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--text);
+    border-radius: 50%;
+  }
+  .section h2 {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 0 0 14px;
+    letter-spacing: -0.028em;
+    line-height: 1.05;
+    max-width: 820px;
+  }
+  .section h2 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 58%, var(--accent) 58%, var(--accent) 92%, transparent 92%);
+    padding: 0 6px;
+    margin: 0 -3px;
+  }
+  .section h2 .stroke {
+    -webkit-text-stroke: 2px var(--text);
+    color: transparent;
+    font-style: normal;
+  }
+  @media (max-width: 640px) {
+    .section { margin-top: 56px; }
+    .section h2 { font-size: 30px; }
+  }
+  .section .section-lead {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+    max-width: 720px;
+    line-height: 1.6;
+  }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-lead { margin-left: auto; margin-right: auto; }
+
+  /* SCREENS / MOCKUPS */
+  .screens-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 860px) { .screens-grid { grid-template-columns: 1fr; } }
+  .screen-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px -20px rgba(30,30,30,0.18);
+    display: flex;
+    flex-direction: column;
+  }
+  .screen-card .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: var(--card-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .screen-card .browser-bar .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .screen-card .browser-bar .dot:nth-child(1) { background: #FF6058; }
+  .screen-card .browser-bar .dot:nth-child(2) { background: #FFBD2E; }
+  .screen-card .browser-bar .dot:nth-child(3) { background: #28C941; }
+  .screen-card .browser-bar .url {
+    margin-left: 14px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: -apple-system, monospace;
+    background: #fff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    flex: 1;
+  }
+  .screen-card .screen-body { padding: 24px; flex: 1; }
+  .screen-card .screen-caption {
+    padding: 14px 22px 18px;
+    border-top: 1px solid var(--border);
+    background: var(--card);
+  }
+  .screen-card .screen-caption h4 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .screen-card .screen-caption p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* PDP MOCKUP with stars */
+  .mockup-pdp { background: #fff; }
+  .mockup-pdp .product-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #1E1E1E;
+  }
+  .mockup-pdp .stars-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .mockup-pdp .stars {
+    color: var(--star);
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .mockup-pdp .rating-meta {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .mockup-pdp .price {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1E1E1E;
+    margin: 0 0 14px;
+  }
+  .mockup-pdp .reviews-list {
+    margin-top: 18px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .mockup-pdp .review {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .mockup-pdp .review .rev-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .mockup-pdp .review .rev-stars {
+    color: var(--star);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .mockup-pdp .review .rev-author {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .mockup-pdp .review .rev-author .verified {
+    color: var(--success);
+    font-weight: 600;
+    font-size: 10px;
+    margin-left: 6px;
+  }
+  .mockup-pdp .review .rev-text {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  /* Email mockup */
+  .mockup-email { background: #fff; }
+  .mockup-email .email-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+  .mockup-email .email-head .from {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 4px;
+  }
+  .mockup-email .email-head .subj {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+  .mockup-email .email-body {
+    text-align: center;
+  }
+  .mockup-email .email-body .greet {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .mockup-email .email-body .ask {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 18px;
+    line-height: 1.5;
+  }
+  .mockup-email .star-pick {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .mockup-email .star-pick span {
+    font-size: 28px;
+    color: var(--border);
+    cursor: pointer;
+  }
+  .mockup-email .star-pick span.on { color: var(--star); }
+  .mockup-email .email-cta {
+    display: inline-block;
+    background: #1E1E1E;
+    color: var(--accent);
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* Channels mockup */
+  .mockup-channels {
+    grid-column: 1 / -1;
+    background: #fff;
+  }
+  .mockup-channels .ch-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .mockup-channels .ch-row { grid-template-columns: 1fr; } }
+  .mockup-channels .ch-card {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    background: #fff;
+    position: relative;
+  }
+  .mockup-channels .ch-card .ch-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .mockup-channels .ch-card .ch-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .mockup-channels .ch-card .ch-icon.email { background: #4F46E5; }
+  .mockup-channels .ch-card .ch-icon.sms { background: #1E1E1E; }
+  .mockup-channels .ch-card .ch-icon.whatsapp { background: #25D366; }
+  .mockup-channels .ch-card .ch-name {
+    font-size: 14px;
+    font-weight: 800;
+    margin: 0;
+    color: var(--text);
+  }
+  .mockup-channels .ch-card .ch-rate {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0;
+    font-weight: 600;
+  }
+  .mockup-channels .ch-card .ch-bubble {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .mockup-channels .ch-card .ch-bubble.whatsapp {
+    background: #DCF8C6;
+  }
+  .mockup-channels .ch-card .ch-bubble.sms {
+    background: #F0F0F0;
+  }
+  .mockup-channels .ch-card .ch-bubble .ch-stars {
+    color: var(--star);
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 6px;
+  }
+  .mockup-channels .ch-card .ch-link {
+    color: #1A73E8;
+    font-size: 11px;
+    text-decoration: underline;
+    word-break: break-all;
+  }
+
+  /* STATS GRID */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .stats { grid-template-columns: 1fr; } }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  .stat .num {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+  }
+  .stat .num em {
+    font-style: normal;
+    background: var(--accent);
+    padding: 0 4px;
+  }
+  .stat .desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.45;
+  }
+  .stat .src {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 8px 0 0;
+    font-style: italic;
+  }
+
+  /* PROBLEM/REASON LIST */
+  .reason-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 760px) { .reason-grid { grid-template-columns: 1fr; } }
+  .reason-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .reason-card h3 {
+    font-size: 17px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    letter-spacing: -0.005em;
+  }
+  .reason-card h3::before {
+    content: "✕";
+    color: var(--danger);
+    font-weight: 800;
+    margin-right: 8px;
+  }
+  .reason-card.solution h3::before {
+    content: "✓";
+    color: var(--success);
+  }
+  .reason-card p {
+    color: var(--muted);
+    font-size: 14.5px;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* FEATURE / ALGO SECTION */
+  .algos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 760px) { .algos { grid-template-columns: 1fr; } }
+  .algo {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .algo .icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--accent);
+    border: 2px solid var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .algo h3 { font-size: 16px; margin: 0 0 4px; font-weight: 800; }
+  .algo p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+  /* PLACEMENTS */
+  .placements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .placement {
+    background: var(--card);
+    border: 1.5px solid var(--text);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .placement::before { content: "📍"; margin-right: 6px; }
+
+  /* PRICING TABLE */
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 12px 0 0;
+  }
+  .pricing-table th, .pricing-table td {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-table th {
+    background: var(--card-2);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-note {
+    color: var(--muted);
+    font-size: 13.5px;
+    margin: 14px 0 0;
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .faq details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin-bottom: 10px;
+    transition: background 0.15s;
+  }
+  .faq details[open] { background: var(--card-2); }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    list-style: none;
+    padding-right: 30px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    float: right;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1;
+    margin-right: -22px;
+  }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details p {
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 12px 0 0;
+  }
+
+  /* BIG CTA */
+  .cta-section {
+    margin-top: 72px;
+    padding: 56px 36px;
+    background: var(--bg-dark);
+    color: var(--text-inv);
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 300px; height: 300px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.1;
+  }
+  .cta-section h2 {
+    color: var(--accent);
+    font-size: 34px;
+    margin: 0 0 12px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+  .cta-section p {
+    margin: 0 0 24px;
+    font-size: 16px;
+    color: var(--muted-dark);
+    position: relative;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-section .timing {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+  }
+  .cta-section .timing strong { color: var(--accent); }
+  .cta-section-btn {
+    margin-top: 32px;
+    background: var(--accent);
+    color: var(--text);
+    border: none;
+    padding: 18px 40px;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+    transition: transform 0.08s, box-shadow 0.08s;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-section-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+    filter: brightness(1.05);
+  }
+  .cta-section-btn:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+  }
+  @media (max-width: 640px) {
+    .cta-section { padding: 40px 24px; }
+    .cta-section h2 { font-size: 26px; }
+  }
+
+  footer {
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="pill">edrone Reviews</span>
+      <h1><em>Avaliações que</em> vendem.</h1>
+      <p class="lead">Coleta automática de avaliações de clientes por Email, SMS e WhatsApp — com verificação de compra. Confira quanto você vai pagar pela <strong>sua loja</strong>.</p>
+      <div class="badges">
+        <div>✓ Implementação em <span>15 minutos</span></div>
+        <div>✓ Sem programação</div>
+        <div>✓ Você paga apenas pelos <span>pedidos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-block">
+    <div class="proof-inner">
+      <section class="section">
+        <div class="section-header">
+          <span class="eyebrow">Provas</span>
+          <h2>Avaliações não são um <em>„detalhe simpático"</em></h2>
+          <p class="section-lead">Ninguém compra de uma loja em que não confia. Avaliações são a forma mais barata e rápida de construir essa confiança <strong>em escala</strong>. Os números são impiedosos:</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <p class="num"><em>92%</em></p>
+            <p class="desc">dos compradores confiam mais em avaliações de outros clientes do que em publicidade</p>
+            <p class="src">Nielsen</p>
+          </div>
+          <div class="stat">
+            <p class="num"><em>63%</em></p>
+            <p class="desc">verificam avaliações antes de cada compra online</p>
+            <p class="src">BazaarVoice</p>
+          </div>
+          <div class="stat">
+            <p class="num"><em>+270%</em></p>
+            <p class="desc">de aumento na conversão para produtos com 5+ avaliações vs. produtos sem avaliações</p>
+            <p class="src">Spiegel Research Center</p>
+          </div>
+          <div class="stat">
+            <p class="num"><em>98%</em></p>
+            <p class="desc">taxa de abertura do WhatsApp — maior eficácia para solicitar avaliação</p>
+            <p class="src">benchmarks do setor</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="plans-block">
+    <div class="plans-inner">
+      <span class="eyebrow-light">Free vs Plano pago</span>
+      <h2>Escolha o plano adequado à <em>escala</em> do seu negócio</h2>
+      <p class="plans-lead">A versão <strong>Free</strong> é um bom começo: coleta ilimitada de avaliações e widget básico. O plano <strong>pago</strong> adiciona o que transforma avaliações em crescimento de receita — Google Reviews, proteção de reputação e página pública para SEO.</p>
+
+      <div class="plan-highlights">
+        <div class="plan-highlight">
+          <div class="ph-icon">✉</div>
+          <h3>Avaliações em automações e newsletters edrone</h3>
+          <p>Esta é a maior vantagem do plano pago: o único lugar do mercado onde as avaliações são nativamente integradas ao motor de Marketing Automation.</p>
+        </div>
+        <div class="plan-highlight">
+          <div class="ph-icon">G</div>
+          <h3>Google Reviews — importação diária</h3>
+          <p>Todas as suas avaliações do Google são importadas diariamente para o painel edrone. Junto com as avaliações da loja — em um só lugar, com um widget único na página do produto.</p>
+        </div>
+        <div class="plan-highlight">
+          <div class="ph-icon">🛡</div>
+          <h3>Sistema de Mediação — proteja sua reputação</h3>
+          <p>Avaliações abaixo de 5★ ficam 30 dias em mediação (desfocadas). O cliente recebe lembretes aos 14 e 21 dias — você tem tempo para resolver o problema antes que a avaliação fique pública.</p>
+        </div>
+        <div class="plan-highlight">
+          <div class="ph-icon">★</div>
+          <h3>Reviews Aggregator — página SEO</h3>
+          <p>Seu cartão de visitas pronto em <strong>edrone.me/sualoja</strong>. Todas as avaliações juntas, indexadas pelo Google. Impulso de SEO sem trabalho extra.</p>
+        </div>
+      </div>
+
+      <div class="plan-compare">
+        <div class="plan-card">
+          <p class="plan-name">Free</p>
+          <p class="plan-title">R$ 0</p>
+          <p class="plan-price">para começar, sem limite de tempo</p>
+          <ul>
+            <li>Coleta ilimitada de avaliações<small>Email + SMS + WhatsApp (SMS e WhatsApp conforme tabela de preços edrone)</small></li>
+            <li>Envio ilimitado de solicitações de avaliação</li>
+            <li>Importação de avaliações de outras ferramentas (TrustMate, Trusted Shops, CSV)</li>
+            <li>Widget on-site (versão básica)</li>
+            <li>Transparência completa: distribuição de notas e filtros</li>
+            <li>Resposta a avaliações</li>
+            <li>Exportação de avaliações</li>
+            <li class="absent">Avaliações em automações e newsletters edrone<small>Sem integração nativa com Marketing Automation</small></li>
+            <li class="absent">Visualização de todas as avaliações no painel<small>Apenas 20 avaliações visíveis</small></li>
+            <li class="absent">Integração com Google Reviews</li>
+            <li class="absent">Sistema de Mediação de avaliações &lt; 5★</li>
+            <li class="absent">Reviews Aggregator (página pública SEO)</li>
+            <li class="absent">Widgets de produto avançados</li>
+          </ul>
+        </div>
+        <div class="plan-card paid">
+          <p class="plan-name">Plano pago</p>
+          <p class="plan-title">A partir de R$ 49 / mês</p>
+          <p class="plan-price">preço em cascata — próximos níveis a tarifas mais baixas; para 2.000 ped. ≈ R$ 907 / mês</p>
+          <ul>
+            <li>Tudo do plano Free</li>
+            <li class="new">Avaliações em automações e newsletters edrone<small>Produtos mais bem avaliados automaticamente em emails pós-compra, winbacks e campanhas de Marketing Automation</small></li>
+            <li class="new">Visualização completa das avaliações — sem o limite de 20</li>
+            <li class="new">Integração com Google Reviews<small>Importação automática diária das avaliações do Google</small></li>
+            <li class="new">System Mediacji<span class="info-icon" title="Função disponível apenas no plano pago" aria-label="Plano pago">i</span><small>A mediação é uma ferramenta avançada que permite o diálogo direto com o cliente</small></li>
+            <li class="new">Reviews Aggregator<small>Página pública em edrone.me — cartão de visitas pronto e impulso de SEO</small></li>
+            <li class="new">Widgets de produto avançados<small>7 estilos adaptados ao design da loja</small></li>
+            <li class="new">Compra verificada + conformidade regulatória</li>
+            <li class="new">Suporte de implementação</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="calc-wrap">
+      <h2>Confira o preço do edrone Reviews</h2>
+      <p class="calc-sub">Escolha o número de pedidos mensais — você verá o preço da tabela oficial imediatamente.</p>
+
+      <div class="field-shop">
+        <label for="shopName">Para qual empresa estamos calculando?</label>
+        <input id="shopName" type="text" placeholder="ex. minhaloja.com.br" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <div class="slider-head">
+          <span class="caption">Pedidos por mês</span>
+          <span class="slider-value" id="ordersDisplay">1 000</span>
+        </div>
+        <input id="orders" type="range" min="0" max="20000" step="50" value="1000" />
+        <div class="slider-bounds"><span>0</span><span>20.000+</span></div>
+      </div>
+
+      <div id="errorMsg" class="error hidden"></div>
+    </div>
+
+    <div id="resultsBlock">
+      <div class="results-block">
+        <p class="results-for">Preço para</p>
+        <h2 class="results-shop" id="shopHeading">sua loja</h2>
+        <p class="results-meta" id="shopMeta">Pacote: —</p>
+
+        <div class="kpis">
+          <div class="kpi">
+            <p class="kpi-label">Maior nível</p>
+            <p class="kpi-value" id="kpiBracket" style="font-size:26px;">—</p>
+            <p class="kpi-sub" id="kpiBracketSub">de 10 níveis</p>
+          </div>
+          <div class="kpi highlight">
+            <div class="kpi-header">
+              <p class="kpi-label">Preço líquido</p>
+              <div class="kpi-toggle" role="tablist" aria-label="Intervalo de tempo">
+                <button type="button" class="active" data-period="month" role="tab" aria-selected="true">/ mês</button>
+                <button type="button" data-period="year" role="tab" aria-selected="false">/ ano</button>
+              </div>
+            </div>
+            <p class="kpi-value" id="kpiPrice">—</p>
+            <p class="kpi-sub" id="kpiPriceSub">kaskadowo</p>
+          </div>
+          <div class="kpi">
+            <p class="kpi-label">Média por pedido</p>
+            <p class="kpi-value" id="kpiRate">—</p>
+            <p class="kpi-sub">preço líquido ÷ número de pedidos</p>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <h4>Como seu preço é calculado (em cascata)</h4>
+          <div id="tierBreakdown"></div>
+          <div class="row net" style="margin-top: 8px;">
+            <span class="lbl">
+              ✅ Total líquido / mês
+              <small>soma de todos os níveis após o cálculo em cascata</small>
+            </span>
+            <span class="val" id="kpiPriceMirror">—</span>
+          </div>
+          <p style="font-size: 12px; color: var(--muted-dark); margin: 14px 0 0; line-height: 1.5; opacity: 0.85;">
+            O preço é calculado em cascata (Stripe-style graduated): cada nível aplica a tarifa apenas aos pedidos dentro do seu intervalo. Email, implementação, integração, migração do TrustMate / Trusted Shops e qualquer quantidade de widgets — incluídos. SMS e WhatsApp cobrados conforme tabela separada da edrone.
+          </p>
+        </div>
+
+        <div class="results-summary">
+          <span>⭐ Produtos com avaliações convertem até <strong>+270%</strong> melhor</span>
+          <span>💬 3 canais de coleta: <strong>Email + SMS + WhatsApp</strong></span>
+          <span>🛡️ 92% dos compradores <strong>confiam em avaliações</strong> mais que em publicidade</span>
+        </div>
+
+        <div class="results-cta">
+          <div class="copy">
+            Ative o edrone Reviews para <span id="ctaShopName">sua loja</span>.
+            <span class="small">Implementação em 15 minutos — primeiras avaliações e pedidos atribuídos ainda esta semana.</span>
+          </div>
+          <button type="button" id="bookBtn">Ativar Reviews</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING TIERS — directly under results -->
+    <section class="section" style="margin-top: 36px;">
+      <div class="section-header">
+        <span class="eyebrow">Níveis de cobrança (em cascata)</span>
+        <h2>Toda a tabela em <em>uma só tela</em></h2>
+        <p class="section-lead">Preço calculado <strong>em cascata</strong> — cada nível aplica a tarifa apenas aos pedidos dentro do seu intervalo (Stripe-style graduated). Quanto maior a loja, menor a tarifa por pedido seguinte. Os níveis que você utiliza estão destacados.</p>
+      </div>
+      <table class="pricing-table" id="pricingTable">
+        <thead>
+          <tr><th>Nível</th><th>Pedidos</th><th>Tarifa</th></tr>
+        </thead>
+        <tbody>
+          <tr data-tier="1"><td>1</td><td>Primeiros 1–50</td><td><strong>R$ 49,00</strong> <small style="opacity:0.65;font-weight:400;">tarifa fixa</small></td></tr>
+          <tr data-tier="2"><td>2</td><td>Próximos 51–100</td><td><strong>R$ 0,99</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="3"><td>3</td><td>Próximos 101–250</td><td><strong>R$ 0,76</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="4"><td>4</td><td>Próximos 251–500</td><td><strong>R$ 0,60</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="5"><td>5</td><td>Próximos 501–1.000</td><td><strong>R$ 0,45</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="6"><td>6</td><td>Próximos 1.001–2.000</td><td><strong>R$ 0,32</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="7"><td>7</td><td>Próximos 2.001–3.500</td><td><strong>R$ 0,26</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="8"><td>8</td><td>Próximos 3.501–5.000</td><td><strong>R$ 0,23</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="9"><td>9</td><td>Próximos 5.001–10.000</td><td><strong>R$ 0,14</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+          <tr data-tier="10"><td>10</td><td>Acima de 10.000</td><td><strong>R$ 0,14</strong> <small style="opacity:0.65;font-weight:400;">/ pedido</small></td></tr>
+        </tbody>
+      </table>
+      <p class="pricing-note"><strong>Exemplo</strong>: para 2.000 pedidos / mês o preço é R$ 49 (primeiros 50) + 50 × R$ 0,99 + 150 × R$ 0,76 + 250 × R$ 0,60 + 500 × R$ 0,45 + 1.000 × R$ 0,32 = <strong>R$ 907,50 líquido</strong>. Implementação, integração, qualquer quantidade de widgets e migração do TrustMate / Trusted Shops / CSV — incluídos. SMS e WhatsApp conforme tabela separada da edrone.</p>
+    </section>
+
+
+    <!-- PROBLEM SECTION -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">Problem</span>
+        <h2>Lojas sem avaliações <em>perdem</em> em cada página de produto</h2>
+        <p class="section-lead">O cliente em 2026 não compra o que ninguém comprou ainda. A falta de avaliações = imposto invisível sobre cada campanha que você roda.</p>
+      </div>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <h3>O cliente não sabe se pode confiar em você</h3>
+          <p>Página vazia, zero estrelas, zero avaliações. O cliente clica „voltar" e procura o mesmo produto na concorrência, que tem avaliações.</p>
+        </div>
+        <div class="reason-card">
+          <h3>Riscos regulatórios sem verificação</h3>
+          <p>Boas práticas exigem mostrar apenas avaliações de pessoas que realmente compraram. Sem verificação de compra — risco de multa e perda de confiança.</p>
+        </div>
+        <div class="reason-card">
+          <h3>O cliente deixa avaliação na concorrência</h3>
+          <p>TrustMate, Trusted Shops, Google — a opinião sobre você vive fora da sua loja. Sem controle, sem moderação, sem impacto na conversão da sua página de produto.</p>
+        </div>
+        <div class="reason-card">
+          <h3>Você não aproveita o UGC no marketing</h3>
+          <p>Centenas de avaliações reais ficam sem uso. Esse é o conteúdo que melhor converte em emails, campanhas e automações da edrone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">Solução</span>
+        <h2>O que você recebe no <em>edrone Reviews</em></h2>
+        <p class="section-lead">Não é mais um widget. É um <strong>sistema completo de coleta e publicação de avaliações</strong> — totalmente integrado ao CRM e Marketing Automation da edrone.</p>
+      </div>
+      <div class="algos">
+        <div class="algo">
+          <div class="icon">💬</div>
+          <div>
+            <h3>3 canais de coleta: Email, SMS, WhatsApp</h3>
+            <p>Solicitação automática de avaliação no momento ideal após o pedido — enviada pelo canal em que o cliente responde mais rápido. WhatsApp tem 98% de taxa de abertura.</p>
+          </div>
+        </div>
+        <div class="algo">
+          <div class="icon">🎨</div>
+          <div>
+            <h3>7 estilos de widget</h3>
+            <p>Adaptados ao design da loja — estrelas, lista de avaliações, distribuição de notas, resumo. Você escolhe o estilo, a edrone publica na página do produto sem programação.</p>
+          </div>
+        </div>
+        <div class="algo">
+          <div class="icon">🛡️</div>
+          <div>
+            <h3>Compra verificada e conformidade</h3>
+            <p>Cada avaliação é marcada como „compra verificada" — você mostra apenas avaliações de quem realmente comprou. Total conformidade regulatória.</p>
+          </div>
+        </div>
+        <div class="algo">
+          <div class="icon">↻</div>
+          <div>
+            <h3>Migração em 1 clique</h3>
+            <p>Importe avaliações históricas do TrustMate, Trusted Shops ou de arquivo CSV. Desde o primeiro dia você tem o catálogo completo de avaliações — sem esperar.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 24px;">
+        <p style="font-size: 14px; color: var(--muted); margin: 0 0 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">Exatamente onde o cliente toma a decisão:</p>
+        <div class="placements">
+          <span class="placement">Página do produto</span>
+          <span class="placement">Página de categoria</span>
+          <span class="placement">Email pós-compra</span>
+          <span class="placement">SMS</span>
+          <span class="placement">WhatsApp</span>
+          <span class="placement">Emails de marketing edrone</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENS / EDRONE PRODUCT -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">Veja como é</span>
+        <h2>Avaliações na loja e no painel <em>edrone</em></h2>
+        <p class="section-lead">Três passos simples: envie a solicitação por Email/SMS/WhatsApp, colete a avaliação verificada, exiba na página do produto. <strong>Sem código, sem desenvolvedor</strong> — pronto em 15 minutos.</p>
+      </div>
+
+      <div class="screens-grid">
+        <div class="screen-card">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">sualoja.com.br/produto/camiseta-sage</span>
+          </div>
+          <div class="screen-body mockup-pdp">
+            <p class="product-title">Camiseta de algodão — sage</p>
+            <div class="stars-row">
+              <span class="stars">★★★★★</span>
+              <span class="rating-meta">4,8 / 5 — 247 avaliações</span>
+            </div>
+            <p class="price">R$ 129</p>
+            <div class="reviews-list">
+              <div class="review">
+                <div class="rev-head">
+                  <span class="rev-stars">★★★★★</span>
+                  <span class="rev-author">Anna K. <span class="verified">✓ compra verificada</span></span>
+                </div>
+                <p class="rev-text">Tecido excelente, cor igual à da foto. Não desbota na lavagem. Recomendo!</p>
+              </div>
+              <div class="review">
+                <div class="rev-head">
+                  <span class="rev-stars">★★★★☆</span>
+                  <span class="rev-author">Tomek R. <span class="verified">✓ compra verificada</span></span>
+                </div>
+                <p class="rev-text">Qualidade muito boa. O tamanho ficou um pouco maior do que eu esperava.</p>
+              </div>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <h4>Assim ficam as avaliações para seus clientes</h4>
+            <p>Um dos 7 estilos de widget — estrelas, distribuição de notas, avaliações com selo „compra verificada". Adaptado automaticamente ao design da loja.</p>
+          </div>
+        </div>
+
+        <div class="screen-card">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">gmail.com / Caixa de entrada</span>
+          </div>
+          <div class="screen-body mockup-email">
+            <div class="email-head">
+              <p class="from">edrone-reviews &lt;avaliacoes@sualoja.com.br&gt;</p>
+              <p class="subj">Ana, o que achou da sua nova camiseta? ⭐</p>
+            </div>
+            <div class="email-body">
+              <p class="greet">Olá, Ana!</p>
+              <p class="ask">Sua camiseta sage chegou. Conte como ficou — leva apenas 30 segundos:</p>
+              <div class="star-pick">
+                <span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span>
+              </div>
+              <a href="#" class="email-cta">Deixar avaliação →</a>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <h4>Solicitação automática — no momento ideal</h4>
+            <p>A edrone sabe quando o pacote chegou ao cliente. Envia Email, SMS ou WhatsApp exatamente quando a emoção pós-compra está no auge.</p>
+          </div>
+        </div>
+
+        <div class="screen-card mockup-channels">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">app.edrone.me / Reviews / Canais de coleta</span>
+          </div>
+          <div class="screen-body">
+            <div class="ch-row">
+              <div class="ch-card">
+                <div class="ch-head">
+                  <div class="ch-icon email">@</div>
+                  <div>
+                    <p class="ch-name">Email</p>
+                    <p class="ch-rate">~25% taxa de abertura</p>
+                  </div>
+                </div>
+                <div class="ch-bubble">
+                  <strong>Ana, o que achou da sua nova camiseta?</strong>
+                  <span class="ch-stars">☆☆☆☆☆</span>
+                </div>
+                <span class="ch-link">avaliacoes.sualoja.com.br/ana-k</span>
+              </div>
+              <div class="ch-card">
+                <div class="ch-head">
+                  <div class="ch-icon sms">⌧</div>
+                  <div>
+                    <p class="ch-name">SMS</p>
+                    <p class="ch-rate">~95% taxa de abertura</p>
+                  </div>
+                </div>
+                <div class="ch-bubble sms">
+                  Olá, Ana! O que achou da camiseta? Deixe uma avaliação (30 seg):
+                  <span class="ch-link" style="display:block; margin-top:6px;">edrone.me/r/8X2A</span>
+                </div>
+              </div>
+              <div class="ch-card">
+                <div class="ch-head">
+                  <div class="ch-icon whatsapp">✓</div>
+                  <div>
+                    <p class="ch-name">WhatsApp</p>
+                    <p class="ch-rate">~98% taxa de abertura</p>
+                  </div>
+                </div>
+                <div class="ch-bubble whatsapp">
+                  Olá, Ana! 👋 Conte o que achou da camiseta — clique nas estrelas:
+                  <span class="ch-stars">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-caption">
+            <h4>3 canais de coleta em uma ferramenta</h4>
+            <p>A edrone escolhe o canal em que o cliente responderá mais rápido. Email, SMS, WhatsApp — automaticamente, em sequência, no momento ideal após a entrega.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT PAYS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="eyebrow">ROI</span>
+        <h2>Por que <em>vale a pena</em></h2>
+        <p class="section-lead">Avaliações são o único tipo de conteúdo que <strong>seus clientes criam por você</strong> — e o valor cresce com o tempo. Cada nova avaliação aumenta a credibilidade de todas as próximas páginas de produto.</p>
+      </div>
+      <div class="reason-grid">
+        <div class="reason-card solution">
+          <h3>Você paga proporcional à escala</h3>
+          <p>A tarifa por pedido diminui conforme a loja cresce — de R$ 0,99 no primeiro nível a R$ 0,14 acima de 5.000 pedidos. Loja maior = menor custo unitário.</p>
+        </div>
+        <div class="reason-card solution">
+          <h3>Um ativo que trabalha 24/7</h3>
+          <p>Cada avaliação coletada fica na sua página de produto para sempre. Vende por você à noite, no fim de semana e durante as férias.</p>
+        </div>
+        <div class="reason-card solution">
+          <h3>Um ecossistema único com o CRM edrone</h3>
+          <p>Avaliações alimentam suas campanhas, automações e segmentos. Cliente com 5★ vai para o programa de fidelidade, cliente com 2★ — para o follow-up de atendimento. Tudo em um só painel.</p>
+        </div>
+        <div class="reason-card solution">
+          <h3>Conformidade regulatória sem advogado</h3>
+          <p>Apenas avaliações verificadas de quem realmente comprou. Conformidade regulatória pronta para uso — sem risco de multa por avaliações falsas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq">
+      <div class="section-header">
+        <span class="eyebrow">FAQ</span>
+        <h2>Perguntas <em>frequentes</em></h2>
+      </div>
+      <details>
+        <summary>De onde vêm os valores padrão da taxa de coleta e do aumento de conversão?</summary>
+        <p>Dos benchmarks de clientes ativos da edrone com Reviews implementado. A taxa padrão de 15% é o meio da distribuição — lojas usando todos os 3 canais (Email + SMS + WhatsApp) atingem 20–30%, as que enviam apenas email — 5–10%. O aumento de conversão de 10% corresponde ao efeito médio de mostrar avaliações verificadas na página do produto vs. sem avaliações.</p>
+      </details>
+      <details>
+        <summary>O edrone Reviews atende às exigências de conformidade?</summary>
+        <p>Sim. Toda avaliação publicada pelo edrone Reviews é verificada — vem de uma pessoa que realmente comprou o produto e é marcada com o selo „compra verificada". Conformidade regulatória total pronta para uso, sem configuração.</p>
+      </details>
+      <details>
+        <summary>E as avaliações que já tenho (ex. em TrustMate, Trusted Shops)?</summary>
+        <p>Migramos avaliações históricas do TrustMate, Trusted Shops e de qualquer arquivo CSV — preservando datas, autores e notas. Desde o primeiro dia você tem o catálogo completo de avaliações, sem esperar coletar novas.</p>
+      </details>
+      <details>
+        <summary>Quais canais de coleta de avaliações estão disponíveis?</summary>
+        <p>Três: <strong>Email, SMS e WhatsApp</strong>. A edrone escolhe o canal em que o cliente responderá mais rápido — ou envia em sequência (primeiro WhatsApp, fallback para SMS, depois email). WhatsApp tem a maior eficácia (98% de abertura).</p>
+      </details>
+      <details>
+        <summary>Posso moderar as avaliações antes da publicação?</summary>
+        <p>Sim. Você escolhe o modo: publicação automática, moderação manual de cada avaliação ou moderação apenas das notas abaixo de um limite (ex. ≤3★). A qualquer momento você pode responder a uma avaliação diretamente no painel edrone.</p>
+      </details>
+      <details>
+        <summary>Quanto tempo leva a implementação?</summary>
+        <p><strong>15 minutos.</strong> Você ativa o Reviews no painel edrone, escolhe o estilo de widget (entre 7 disponíveis) e configura os canais de coleta. Integração com 25+ plataformas de e-commerce — Shopify, WooCommerce, PrestaShop, VTEX, Nuvemshop e outras. As primeiras avaliações aparecem normalmente em poucos dias.</p>
+      </details>
+      <details>
+        <summary>Tenho várias lojas / workspaces. Como sou cobrado?</summary>
+        <p>A taxa mínima se aplica a cada workspace (cada tracker), conforme a sua estrutura atual de licença edrone.</p>
+      </details>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+      <h2 id="finalCtaHeader">Não deixe a confiança para depois.</h2>
+      <p>Você já tem o motor de IA da edrone gerando receita diariamente em email, SMS, WhatsApp e automações. Hora de adicionar a camada que vende sozinha — as avaliações dos seus clientes.</p>
+      <div class="timing">
+        <div>⚡ Instalação: <strong>15 minutos</strong></div>
+        <div>⭐ Primeiras avaliações: <strong>esta semana</strong></div>
+        <div>💰 Você paga apenas pelo <strong>resultado</strong></div>
+      </div>
+      <button type="button" id="finalBookBtn" class="cta-section-btn">Ativar Reviews</button>
+    </section>
+
+    <footer id="footer">Parâmetros padrão baseados em benchmarks edrone de clientes BR ativos.</footer>
+  </main>
+
+<script>
+(function () {
+  const LOCALE = "pt-BR";
+
+  // Graduated (Stripe-style) tiered pricing.
+  // Each tier covers units from (prev.upTo + 1) to upTo.
+  // Tier 1 has flatAmount: it's a flat fee for any usage in that range.
+  const TIERS = [
+    { tier: 1,  upTo: 50,        unitPrice: null, flatAmount: 49.00, label: "1–50",          range: "Primeiros 1–50" },
+    { tier: 2,  upTo: 100,       unitPrice: 0.99, flatAmount: null,  label: "51–100",        range: "Próximos 51–100" },
+    { tier: 3,  upTo: 250,       unitPrice: 0.76, flatAmount: null,  label: "101–250",       range: "Próximos 101–250" },
+    { tier: 4,  upTo: 500,       unitPrice: 0.60, flatAmount: null,  label: "251–500",       range: "Próximos 251–500" },
+    { tier: 5,  upTo: 1000,      unitPrice: 0.45, flatAmount: null,  label: "501–1 000",     range: "Próximos 501–1.000" },
+    { tier: 6,  upTo: 2000,      unitPrice: 0.32, flatAmount: null,  label: "1 001–2 000",   range: "Próximos 1.001–2.000" },
+    { tier: 7,  upTo: 3500,      unitPrice: 0.26, flatAmount: null,  label: "2 001–3 500",   range: "Próximos 2.001–3.500" },
+    { tier: 8,  upTo: 5000,      unitPrice: 0.23, flatAmount: null,  label: "3 501–5 000",   range: "Próximos 3.501–5.000" },
+    { tier: 9,  upTo: 10000,     unitPrice: 0.14, flatAmount: null,  label: "5 001–10 000",  range: "Próximos 5.001–10.000" },
+    { tier: 10, upTo: Infinity,  unitPrice: 0.14, flatAmount: null,  label: "10 001+",       range: "Acima de 10.000" },
+  ];
+
+  const state = { period: "month", lastPrice: 0 };
+
+  function fmtInt(n) {
+    return new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 0 }).format(n);
+  }
+  function fmtMoney(n) {
+    if (Math.abs(n - Math.round(n)) < 0.005) return "R$ " + fmtInt(Math.round(n));
+    return "R$ " + n.toFixed(2).replace(".", ",");
+  }
+  function fmtRate(n) {
+    return "R$ " + n.toFixed(2).replace(".", ",");
+  }
+  function showError(msg) {
+    const el = document.getElementById("errorMsg");
+    el.textContent = msg;
+    el.classList.remove("hidden");
+  }
+  function clearError() {
+    document.getElementById("errorMsg").classList.add("hidden");
+  }
+  function $(id) { return document.getElementById(id); }
+
+  function readNumber(id) { return Number($(id).value); }
+
+  // Graduated pricing: walk tiers, accumulate cost per slice of orders.
+  function calculateGraduated(orders) {
+    const breakdown = [];
+    let total = 0;
+    let currentTier = TIERS[0];
+    if (orders <= 0) return { total: 0, breakdown, currentTier };
+
+    let processed = 0;
+    for (const t of TIERS) {
+      if (processed >= orders) break;
+      const tierFloor = processed; // exclusive lower bound
+      const tierTop = Math.min(orders, t.upTo);
+      const unitsInTier = tierTop - tierFloor;
+      if (unitsInTier <= 0) continue;
+
+      let cost;
+      if (t.flatAmount !== null) {
+        cost = t.flatAmount;
+        breakdown.push({ tier: t, units: unitsInTier, cost, isFlat: true });
+      } else {
+        cost = unitsInTier * t.unitPrice;
+        breakdown.push({ tier: t, units: unitsInTier, cost, isFlat: false });
+      }
+      total += cost;
+      processed = tierTop;
+      currentTier = t;
+    }
+    return { total, breakdown, currentTier };
+  }
+
+  function syncDisplays() {
+    $("ordersDisplay").textContent = fmtInt(readNumber("orders"));
+  }
+
+  function highlightTiers(currentTierNum, usedTierNums) {
+    document.querySelectorAll("#pricingTable tbody tr").forEach((row) => {
+      const t = Number(row.getAttribute("data-tier"));
+      const isCurrent = t === currentTierNum;
+      const isUsed = usedTierNums.has(t);
+      if (isCurrent) {
+        row.style.background = "rgba(236, 255, 90, 0.5)";
+        row.style.fontWeight = "700";
+      } else if (isUsed) {
+        row.style.background = "rgba(236, 255, 90, 0.15)";
+        row.style.fontWeight = "";
+      } else {
+        row.style.background = "";
+        row.style.fontWeight = "";
+      }
+    });
+  }
+
+  function renderTierBreakdown(breakdown, total) {
+    const host = $("tierBreakdown");
+    if (!host) return;
+    if (!breakdown.length) {
+      host.innerHTML = '<div class="row"><span class="lbl">Nenhum pedido cobrado</span><span class="val">R$ 0</span></div>';
+      return;
+    }
+    const rows = breakdown.map((b) => {
+      const right = b.isFlat
+        ? "<strong>" + fmtMoney(b.cost) + "</strong> <small style=\"opacity:0.6;font-weight:400;\">(opłata stała)</small>"
+        : "<strong>" + fmtMoney(b.cost) + "</strong>";
+      const left = b.isFlat
+        ? b.tier.range + " <small style=\"display:block;opacity:0.6;font-size:11.5px;font-weight:400;margin-top:2px;\">opłata stała R$ 49</small>"
+        : b.tier.range + " <small style=\"display:block;opacity:0.6;font-size:11.5px;font-weight:400;margin-top:2px;\">" + fmtInt(b.units) + " × " + fmtRate(b.tier.unitPrice) + "</small>";
+      return '<div class="row" style="align-items: flex-start;"><span class="lbl">' + left + '</span><span class="val">' + right + '</span></div>';
+    });
+    host.innerHTML = rows.join("");
+  }
+
+  function calculate() {
+    clearError();
+    const shop = $("shopName").value.trim();
+    const orders = readNumber("orders");
+
+    if (!Number.isFinite(orders) || orders < 0) {
+      showError("Informe um número de pedidos maior ou igual a zero.");
+      return;
+    }
+
+    const { total, breakdown, currentTier } = calculateGraduated(orders);
+    state.lastPrice = total;
+
+    const shopName = shop || "sua loja";
+    $("shopHeading").textContent = shopName;
+    $("ctaShopName").textContent = shop ? shop : "sua loja";
+    $("shopMeta").textContent =
+      "Pedidos: " + fmtInt(orders) + " / mês  •  Maior nível: " + currentTier.tier + " (" + currentTier.label + ")";
+
+    $("kpiBracket").textContent = currentTier.label;
+    $("kpiBracketSub").textContent = "Maior nível de 10";
+
+    // Average (blended) per-order rate
+    if (orders > 0) {
+      const avg = total / orders;
+      $("kpiRate").textContent = fmtRate(avg);
+    } else {
+      $("kpiRate").textContent = "—";
+    }
+
+    $("kpiPriceSub").textContent = orders > 0
+      ? "em cascata, " + breakdown.length + " " + (breakdown.length === 1 ? "nível" : "níveis")
+      : "sem pedidos";
+
+    renderPriceKpi();
+    const used = new Set(breakdown.map((b) => b.tier.tier));
+    highlightTiers(currentTier.tier, used);
+    renderTierBreakdown(breakdown, total);
+
+    $("finalCtaHeader").textContent = shop
+      ? "Ative o Reviews para " + shop + "."
+      : "Não deixe a confiança para depois.";
+  }
+
+  function renderPriceKpi() {
+    const multiplier = state.period === "year" ? 12 : 1;
+    const price = state.lastPrice * multiplier;
+    $("kpiPrice").textContent = fmtMoney(price);
+    const mirror = $("kpiPriceMirror");
+    if (mirror) mirror.textContent = fmtMoney(price);
+  }
+
+  $("orders").addEventListener("input", () => {
+    syncDisplays();
+    calculate();
+  });
+  $("shopName").addEventListener("input", () => calculate());
+
+  const REVIEWS_APP_URL = "https://control.edrone.me/app/reviews/list";
+  function openReviewsApp() {
+    window.open(REVIEWS_APP_URL, "_blank", "noopener,noreferrer");
+  }
+  $("bookBtn").addEventListener("click", openReviewsApp);
+  const finalBtn = $("finalBookBtn");
+  if (finalBtn) {
+    finalBtn.addEventListener("click", openReviewsApp);
+  }
+
+  document.querySelectorAll(".kpi-toggle button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const group = btn.parentElement;
+      group.querySelectorAll("button").forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+      state.period = btn.dataset.period;
+      renderPriceKpi();
+    });
+  });
+
+  syncDisplays();
+  calculate();
+})();
+</script>
+</body>
+</html>
