@@ -375,6 +375,25 @@
   .plan-card.paid li small {
     color: var(--muted-dark);
   }
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 800;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    margin-left: 6px;
+    cursor: help;
+    border: 1.5px solid var(--text);
+    line-height: 1;
+    vertical-align: middle;
+  }
 
   /* CALCULATOR CARD */
   .calc-wrap {
@@ -1665,7 +1684,7 @@
             <li class="new">Opinie w automatyzacjach i newsletterach edrone<small>Najwyżej oceniane produkty automatycznie w mailach po-zakupowych, winbackach i kampaniach Marketing Automation</small></li>
             <li class="new">Pełny podgląd opinii — bez limitu 20</li>
             <li class="new">Integracja z Google Reviews<small>Codzienny automatyczny import ocen z Google</small></li>
-            <li class="new">System Mediacji<small>Blur opinii &lt; 5★, przypomnienia po 14 i 21 dniach, finalizacja po 30 dniach</small></li>
+            <li class="new">System Mediacji<span class="info-icon" title="Funkcja dostępna tylko w planie płatnym" aria-label="Plan płatny">i</span><small>Mediacja to zaawansowane narzędzie pozwalające na bezpośredni dialog z klientem</small></li>
             <li class="new">Reviews Aggregator<small>Publiczna strona pod edrone.me — gotowa wizytówka i SEO boost</small></li>
             <li class="new">Zaawansowane widgety produktowe<small>7 stylów dopasowanych do designu sklepu</small></li>
             <li class="new">Verified purchase + zgodność z Omnibus</li>
